@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:32:21 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/12 14:31:02 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/13 16:27:28 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,25 +27,25 @@ void	init_map(t_info *info)
 
 void	init_player(t_info *info)
 {
-	info->player.xpos = info->map.xspawn;
-	info->player.ypos = info->map.yspawn;
-	info->player.xdir = -1;
-	info->player.ydir = 0;
-	info->player.xplane = 0;
-	info->player.yplane = 0.66;
+	info->player.x_pos = info->map.x_spawn;
+	info->player.y_pos = info->map.y_spawn;
+	info->player.x_dir = -1;
+	info->player.y_dir = 0;
+	info->player.x_plane = 0;
+	info->player.y_plane = 0.66;
 	info->player.move_down = 0;
 	info->player.move_up = 0;
 	info->player.turn_left = 0;
 	info->player.turn_right = 0;
-	info->player.turnrate = 0.1;
-	info->player.movespeed = 0.05;
-	info->player.tpindex = 0;
+	info->player.turn_rate = 0.1;
+	info->player.move_speed = 0.05;
+	info->player.tp_index = 0;
 }
 
 void	init_window(t_info *info)
 {
-	info->window.w = 640;
-	info->window.h = 360;
+	info->window.w = WIDTH;
+	info->window.h = HEIGHT;
 	info->window.mlx = mlx_init();
 	info->window.win = mlx_new_window(info->window.mlx, info->window.w,
 			info->window.h, "Wold3d Lnieto");

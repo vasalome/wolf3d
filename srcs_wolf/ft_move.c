@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:33:41 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/12 15:52:21 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/13 16:27:33 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,20 +21,20 @@ void	turn_left(t_info *info)
 {
 	if (info->player.turn_left == 1)
 	{
-		info->player.xolddirection = info->player.xdir;
-		info->player.xdir = info->player.xdir *
-			cos(info->player.turnrate) - info->player.ydir *
-			sin(info->player.turnrate);
-		info->player.ydir = info->player.xolddirection *
-			sin(info->player.turnrate) + info->player.ydir *
-			cos(info->player.turnrate);
-		info->player.xoldplane = info->player.xplane;
-		info->player.xplane = info->player.xplane *
-			cos(info->player.turnrate) - info->player.yplane *
-			sin(info->player.turnrate);
-		info->player.yplane = info->player.xoldplane *
-			sin(info->player.turnrate) + info->player.yplane *
-			cos(info->player.turnrate);
+		info->player.x_old_direction = info->player.x_dir;
+		info->player.x_dir = info->player.x_dir *
+			cos(info->player.turn_rate) - info->player.y_dir *
+			sin(info->player.turn_rate);
+		info->player.y_dir = info->player.x_old_direction *
+			sin(info->player.turn_rate) + info->player.y_dir *
+			cos(info->player.turn_rate);
+		info->player.x_old_plane = info->player.x_plane;
+		info->player.x_plane = info->player.x_plane *
+			cos(info->player.turn_rate) - info->player.y_plane *
+			sin(info->player.turn_rate);
+		info->player.y_plane = info->player.x_old_plane *
+			sin(info->player.turn_rate) + info->player.y_plane *
+			cos(info->player.turn_rate);
 	}
 }
 
@@ -42,69 +42,69 @@ void	turn_right(t_info *info)
 {
 	if (info->player.turn_right == 1)
 	{
-		info->player.xolddirection = info->player.xdir;
-		info->player.xdir = info->player.xdir *
-			cos(-info->player.turnrate) - info->player.ydir *
-			sin(-info->player.turnrate);
-		info->player.ydir = info->player.xolddirection *
-			sin(-info->player.turnrate) + info->player.ydir *
-			cos(-info->player.turnrate);
-		info->player.xoldplane = info->player.xplane;
-		info->player.xplane = info->player.xplane *
-			cos(-info->player.turnrate) - info->player.yplane *
-			sin(-info->player.turnrate);
-		info->player.yplane = info->player.xoldplane *
-			sin(-info->player.turnrate) + info->player.yplane *
-			cos(-info->player.turnrate);
+		info->player.x_old_direction = info->player.x_dir;
+		info->player.x_dir = info->player.x_dir *
+			cos(-info->player.turn_rate) - info->player.y_dir *
+			sin(-info->player.turn_rate);
+		info->player.y_dir = info->player.x_old_direction *
+			sin(-info->player.turn_rate) + info->player.y_dir *
+			cos(-info->player.turn_rate);
+		info->player.x_old_plane = info->player.x_plane;
+		info->player.x_plane = info->player.x_plane *
+			cos(-info->player.turn_rate) - info->player.y_plane *
+			sin(-info->player.turn_rate);
+		info->player.y_plane = info->player.x_old_plane *
+			sin(-info->player.turn_rate) + info->player.y_plane *
+			cos(-info->player.turn_rate);
 	}
 	turn_left(info);
 }
 
 void	move_plus1(t_info *info)
 {
-	if (info->map.map[(int)(info->player.xpos + info->player.xdir
-				* info->player.movespeed)][(int)(info->player.ypos)] != '1')
-		info->player.xpos += info->player.xdir * info->player.movespeed;
-	if (info->map.map[(int)(info->player.xpos)][(int)(info->player.ypos
-				+ info->player.ydir * info->player.movespeed)] != '1')
-		info->player.ypos += info->player.ydir * info->player.movespeed;
-	if (info->map.map[(int)(info->player.xpos + info->player.xdir
-				* info->player.movespeed)][(int)(info->player.ypos)] == '3')
+	if (info->map.map[(int)(info->player.x_pos + info->player.x_dir
+				* info->player.move_speed)][(int)(info->player.y_pos)] != '1')
+		info->player.x_pos += info->player.x_dir * info->player.move_speed;
+	if (info->map.map[(int)(info->player.x_pos)][(int)(info->player.y_pos
+				+ info->player.y_dir * info->player.move_speed)] != '1')
+		info->player.y_pos += info->player.y_dir * info->player.move_speed;
+	if (info->map.map[(int)(info->player.x_pos + info->player.x_dir
+				* info->player.move_speed)][(int)(info->player.y_pos)] == '3')
 	{
-		info->player.xpos += info->player.xdir * info->player.movespeed;
-		info->player.xpos = info->player.tp[info->player.tpindex++] +
-			(info->player.xpos - (int)info->player.xpos);
-		info->player.ypos = info->player.tp[info->player.tpindex++] +
-			(info->player.ypos - (int)info->player.ypos);
+		info->player.x_pos += info->player.x_dir * info->player.move_speed;
+		info->player.x_pos = info->player.tp[info->player.tp_index++] +
+			(info->player.x_pos - (int)info->player.x_pos);
+		info->player.y_pos = info->player.tp[info->player.tp_index++] +
+			(info->player.y_pos - (int)info->player.y_pos);
 	}
-	/*if (info->map.map[(int)(info->player.xpos)][(int)(info->player.ypos
-				+ info->player.ydir * info->player.movespeed)] == '3')
+	/*if (info->map.map[(int)(info->player.x_pos)][(int)(info->player.y_pos
+				+ info->player.y_dir * info->player.movespeed)] == '3')
 	{
-		info->player.ypos += info->player.ydir * info->player.movespeed;
+		info->player.y_pos += info->player.y_dir * info->player.move_speed;
 	}*/
 }
 
 void	move_plus2(t_info *info)
 {
-	if (info->map.map[(int)(info->player.xpos - info->player.xdir
-			* info->player.movespeed)][(int)(info->player.ypos)] != '1')
-		info->player.xpos -= info->player.xdir * info->player.movespeed;
-	if (info->map.map[(int)(info->player.xpos)][(int)(info->player.ypos
-			- info->player.ydir * info->player.movespeed)] != '1')
-		info->player.ypos -= info->player.ydir * info->player.movespeed;
-	if (info->map.map[(int)(info->player.xpos - info->player.xdir
-			* info->player.movespeed)][(int)(info->player.ypos)] == '3')
+	if (info->map.map[(int)(info->player.x_pos - info->player.x_dir
+			* info->player.move_speed)][(int)(info->player.y_pos)] != '1')
+		info->player.x_pos -= info->player.x_dir * info->player.move_speed;
+	if (info->map.map[(int)(info->player.x_pos)][(int)(info->player.y_pos
+			- info->player.y_dir * info->player.move_speed)] != '1')
+		info->player.y_pos -= info->player.y_dir * info->player.move_speed;
+	if (info->map.map[(int)(info->player.x_pos - info->player.x_dir
+			* info->player.move_speed)][(int)(info->player.y_pos)] == '3')
 	{
-		info->player.xpos -= info->player.xdir * info->player.movespeed;
-		info->player.xpos = info->player.tp[info->player.tpindex++] +
-			(info->player.xpos - (int)info->player.xpos);
-		info->player.ypos = info->player.tp[info->player.tpindex++] +
-			(info->player.ypos - (int)info->player.ypos);
+		info->player.x_pos -= info->player.x_dir * info->player.move_speed;
+		info->player.x_pos = info->player.tp[info->player.tp_index++] +
+			(info->player.x_pos - (int)info->player.x_pos);
+		info->player.y_pos = info->player.tp[info->player.tp_index++] +
+			(info->player.y_pos - (int)info->player.y_pos);
 	}
-	/*if (info->map.map[(int)(info->player.xpos)][(int)(info->player.ypos
-			- info->player.ydir * info->player.movespeed)] == '3')
+	/*if (info->map.map[(int)(info->player.x_pos)][(int)(info->player.y_pos
+			- info->player.y_dir * info->player.move_speed)] == '3')
 	{
-		info->player.ypos -= info->player.ydir * info->player.movespeed;
+		info->player.y_pos -= info->player.y_dir * info->player.move_speed;
 	}*/
 }
 

@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:34:41 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/12 16:02:27 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/13 16:27:30 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,7 @@ int		key_press(int keycode, t_info *info)
 	else if (keycode == KEY_A || keycode == KEY_LEFT)
 		info->player.turn_left = 1;
 	else if (keycode == KEY_SHIFT_L || keycode == KEY_SHIFT_R)
-		info->player.movespeed = 0.2;
+		info->player.move_speed = 0.2;
 	else if (keycode == KEY_ESC)
 		exit(1);
 	return (0);
@@ -50,6 +50,6 @@ int		key_release(int keycode, t_info *info)
 	else if (keycode == KEY_A || keycode == KEY_LEFT)
 		info->player.turn_left = 0;
 	else if (keycode == KEY_SHIFT_L || keycode == KEY_SHIFT_R)
-		info->player.movespeed = 0.05;
+		info->player.move_speed = 0.05;
 	return (0);
 }

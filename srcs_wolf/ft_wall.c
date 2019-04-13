@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:37:11 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/12 15:58:43 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/13 16:27:37 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,17 +17,17 @@
 ** draw image with vertical lines
 */
 
-void	draw_wall(int x, int drawstart, int drawend, t_info *info)
+void	draw_wall(int x, int draw_start, int draw_end, t_info *info)
 {
 	int		y;
 
 	y = -1;
-	while (++y <= drawstart)
+	while (++y <= draw_start)
 		mlx_pixel_put(info->window.mlx, info->window.win, x, y, 0xAAEEFF);
-	while (++drawstart <= drawend)
+	while (++draw_start <= draw_end)
 		mlx_pixel_put(info->window.mlx, info->window.win, x,
-				drawstart, info->wall.color);
-	y = drawstart - 1;
+				draw_start, info->wall.color);
+	y = draw_start - 1;
 	while (++y < info->window.h)
 		mlx_pixel_put(info->window.mlx, info->window.win, x, y, 0xDEB887);
 }
@@ -38,39 +38,39 @@ void	draw_wall(int x, int drawstart, int drawend, t_info *info)
 
 void	wall_detection_init_y(t_info *info)
 {
-	info->ray.ydeltadistance = sqrt(1 + (info->ray.xraydirection *
-				info->ray.xraydirection) / (info->ray.yraydirection *
-					info->ray.yraydirection));
-	if (info->ray.yraydirection < 0)
+	info->ray.y_delta_distance = sqrt(1 + (info->ray.x_ray_direction *
+				info->ray.x_ray_direction) / (info->ray.y_ray_direction *
+					info->ray.y_ray_direction));
+	if (info->ray.y_ray_direction < 0)
 	{
-		info->map.ystep = -1;
-		info->ray.ysidedistance = (info->ray.yrayposition -
-				info->map.y) * info->ray.ydeltadistance;
+		info->map.y_step = -1;
+		info->ray.y_side_distance = (info->ray.y_ray_position -
+				info->map.y) * info->ray.y_delta_distance;
 	}
 	else
 	{
-		info->map.ystep = 1;
-		info->ray.ysidedistance = (info->map.y + 1.0 -
-				info->ray.yrayposition) * info->ray.ydeltadistance;
+		info->map.y_step = 1;
+		info->ray.y_side_distance = (info->map.y + 1.0 -
+				info->ray.y_ray_position) * info->ray.y_delta_distance;
 	}
 }
 
 void	wall_detection_init_x(t_info *info)
 {
-	info->ray.xdeltadistance = sqrt(1 + (info->ray.yraydirection *
-				info->ray.yraydirection) / (info->ray.xraydirection *
-					info->ray.xraydirection));
-	if (info->ray.xraydirection < 0)
+	info->ray.x_delta_distance = sqrt(1 + (info->ray.y_ray_direction *
+				info->ray.y_ray_direction) / (info->ray.x_ray_direction *
+					info->ray.x_ray_direction));
+	if (info->ray.x_ray_direction < 0)
 	{
-		info->map.xstep = -1;
-		info->ray.xsidedistance = (info->ray.xrayposition -
-				info->map.x) * info->ray.xdeltadistance;
+		info->map.x_step = -1;
+		info->ray.x_side_distance = (info->ray.x_ray_position -
+				info->map.x) * info->ray.x_delta_distance;
 	}
 	else
 	{
-		info->map.xstep = 1;
-		info->ray.xsidedistance = (info->map.x + 1.0 -
-				info->ray.xrayposition) * info->ray.xdeltadistance;
+		info->map.x_step = 1;
+		info->ray.x_side_distance = (info->map.x + 1.0 -
+				info->ray.x_ray_position) * info->ray.x_delta_distance;
 	}
 	wall_detection_init_y(info);
 }
@@ -84,16 +84,16 @@ void	wall_detection(t_info *info)
 	info->map.hit = 0;
 	while (info->map.hit == 0)
 	{
-		if (info->ray.xsidedistance < info->ray.ysidedistance)
+		if (info->ray.x_side_distance < info->ray.y_side_distance)
 		{
-			info->ray.xsidedistance += info->ray.xdeltadistance;
-			info->map.x += info->map.xstep;
+			info->ray.x_side_distance += info->ray.x_delta_distance;
+			info->map.x += info->map.x_step;
 			info->wall.side = 0;
 		}
 		else
 		{
-			info->ray.ysidedistance += info->ray.ydeltadistance;
-			info->map.y += info->map.ystep;
+			info->ray.y_side_distance += info->ray.y_delta_distance;
+			info->map.y += info->map.y_step;
 			info->wall.side = 1;
 		}
 		if (info->map.map[info->map.x][info->map.y] == '1')

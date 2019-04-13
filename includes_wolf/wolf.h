@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/08 18:02:24 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/12 14:57:27 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/13 16:27:26 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,9 @@
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <pthread.h>
+
+# define WIDTH 640
+# define HEIGHT 360
 
 typedef struct		s_fillmap
 {
@@ -57,37 +60,37 @@ typedef struct		s_tex
 
 typedef struct		s_ray
 {
-	double			xrayposition;
-	double			yrayposition;
-	double			xraydirection;
-	double			yraydirection;
-	double			xsidedistance;
-	double			ysidedistance;
-	double			xdeltadistance;
-	double			ydeltadistance;
+	double			x_ray_position;
+	double			y_ray_position;
+	double			x_ray_direction;
+	double			y_ray_direction;
+	double			x_side_distance;
+	double			y_side_distance;
+	double			x_delta_distance;
+	double			y_delta_distance;
 }					t_ray;
 
 typedef struct		s_player
 {
-	double			xcamera;
-	double			xpos;
-	double			ypos;
-	double			xoldposition;
-	double			yoldposition;
-	double			xdir;
-	double			ydir;
-	double			xplane;
-	double			yplane;
-	double			xolddirection;
-	double			xoldplane;
-	double			movespeed;
-	double			turnrate;
+	double			x_camera;
+	double			x_pos;
+	double			y_pos;
+	double			x_old_position;
+	double			y_old_position;
+	double			x_dir;
+	double			y_dir;
+	double			x_plane;
+	double			y_plane;
+	double			x_old_direction;
+	double			x_old_plane;
+	double			move_speed;
+	double			turn_rate;
 	int				turn_right;
 	int				turn_left;
 	int				move_up;
 	int				move_down;
 	int				*tp;
-	int				tpindex;
+	int				tp_index;
 }					t_player;
 
 typedef struct		s_window
@@ -102,25 +105,25 @@ typedef struct		s_map
 {
 	int				x;
 	int				y;
-	int				xstep;
-	int				ystep;
+	int				x_step;
+	int				y_step;
 	int				hit;
 	int				width;
 	int				height;
-	double			xspawn;
-	double			yspawn;
+	double			x_spawn;
+	double			y_spawn;
 	char			*name;
 	char			**map;
 }					t_map;
 
 typedef struct		s_wall
 {
-	int				lineheight;
-	int				drawstart;
-	int				drawend;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
 	int				side;
 	int				color;
-	double			walldistance;
+	double			wall_distance;
 	int				x;
 }					t_wall;
 
