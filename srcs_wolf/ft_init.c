@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:32:21 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/13 16:27:28 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 16:42:12 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,7 +48,7 @@ void	init_window(t_info *info)
 	info->window.h = HEIGHT;
 	info->window.mlx = mlx_init();
 	info->window.win = mlx_new_window(info->window.mlx, info->window.w,
-			info->window.h, "Wold3d Lnieto");
+			info->window.h, "LES NAZIS C'EST PAS TRES LE COOL");
 }
 
 void	init(t_info *info)
