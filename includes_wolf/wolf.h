@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/08 18:02:24 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/13 16:27:26 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/24 19:24:34 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -163,5 +163,8 @@ void				draw_wall(int x, int drawstart, int drawend, t_info *info);
 void				wall_detection_init_y(t_info *info);
 void				wall_detection_init_x(t_info *info);
 void				wall_detection(t_info *info);
+
+int					red_cross(void);
+int					ft_usage(void);
 
 #endif

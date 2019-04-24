@@ -14,7 +14,7 @@
 #include "../includes_wolf/wolf.h"
 
 /*
-** initate default variables when game start
+** Initate default variables when game start
 */
 
 void	init_map(t_info *info)

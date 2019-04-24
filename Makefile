@@ -6,7 +6,7 @@
 #    By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/26 17:27:09 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/12 13:57:15 by vasalome    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/04/24 19:50:15 by vasalome    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -37,6 +37,7 @@ SRCS		+=	ft_move.c
 SRCS		+=	ft_ray.c
 SRCS		+=	ft_wall.c
 SRCS		+=	ft_spawn.c
+SRCS		+=	ft_usage.c
 
 #	Objects:
 OBJ			=	$(addprefix $(OBJ_DIR),$(SRCS:.c=.o))
@@ -77,8 +78,7 @@ R_UNDERLINE	=	\033[24m
 
 $(OBJ_DIR)%.o:$(SRCS_DIR)%.c $(INC_DIR)*.h
 	@printf "$(_ORANGE)[CC] $(<:.c=)...$(_STOP)"
-#	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
-	@$(CC) $(INC) -c $< -o $@ #A MODIFIER
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 	@printf "\r                                             \r"
 
 all:
@@ -89,10 +89,10 @@ all:
 make_libft:
 	@make -C libft/
 
-#make_mlx:
-#	@echo "$(_ORANGE)$(UNDERLINE)MLX:$(R_UNDERLINE)$(_STOP)		$(BOLD)LIB IN PROGRESS..$(_STOP)\n"
-#	@make re -C minilibx_macos/
-#	@echo "\n"
+make_mlx:
+	@echo "$(_ORANGE)$(UNDERLINE)MLX:$(R_UNDERLINE)$(_STOP)		$(BOLD)LIB IN PROGRESS..$(_STOP)\n"
+	@make re -C minilibx_macos/
+	@echo "\n"
 
 $(NAME): $(OBJ) $(INC_DIR) make_libft #make_mlx
 	@echo "$(_ORANGE)$(UNDERLINE)WOLF3D:$(R_UNDERLINE)$(_STOP)		$(BOLD)COMPILATION $(NAME): IN PROGRESS..$(_STOP)\n"
@@ -102,11 +102,11 @@ $(NAME): $(OBJ) $(INC_DIR) make_libft #make_mlx
 #	@sleep 1.5
 #	@clear
 	@echo "\n$(_ORANGE)	   _____________________________"
-	@echo "	|>				<|"
-	@echo "	|>	   ┬ ┬┌─┐┬  ┌─┐		<|"
-	@echo "	|>	   ││││ ││  ├┤ 		<|"
-	@echo "	|>	   └┴┘└─┘┴─┘└  _3D	<|"
-	@echo "	|>				<|"
+	@echo "	|>				 <|"
+	@echo "	|>	   ┬ ┬┌─┐┬  ┌─┐		 <|"
+	@echo "	|>	   ││││ ││  ├┤ 		 <|"
+	@echo "	|>	   └┴┘└─┘┴─┘└  _3D	 <|"
+	@echo "	|>				 <|"
 	@echo "	   __________________$(_STOP)$(BLINK)$(_YELLOW)is ready$(R_BLINK)$(_ORANGE)____$(_STOP)\n"
 
 clean:
@@ -125,7 +125,9 @@ re:
 	@$(MAKE) fclean --no-print-directory
 	@$(MAKE) all --no-print-directory
 
+bin: re clean
+
 
 #.SILENT: make_mlx
 #.PRECIOUS:
-.PHONY: all clean fclean re make_libft
+.PHONY: all clean fclean re bin make_libft
