@@ -25,6 +25,13 @@ void	init_map(t_info *info)
 	get_spawn(info);
 }
 
+void	load_textures(t_info *info)
+{
+	info->w_i = 0;
+	info->weapon[0].img = mlx_xpm_file_to_image(info->window.mlx, "pistol/pistol1.xpm", &info->weapon[0].xhud, &info->weapon[0].yhud);
+	info->weapon[1].img = mlx_xpm_file_to_image(info->window.mlx, "knife/knife1.xpm", &info->weapon[0].xhud, &info->weapon[0].yhud);
+}
+
 void	init_player(t_info *info)
 {
 	info->player.x_pos = info->map.x_spawn;
@@ -43,7 +50,7 @@ void	init_player(t_info *info)
 }
 
 void	init_window(t_info *info)
-{
+{	
 	info->window.w = WIDTH;
 	info->window.h = HEIGHT;
 	info->window.mlx = mlx_init();
@@ -54,6 +61,7 @@ void	init_window(t_info *info)
 void	init(t_info *info)
 {
 	init_window(info);
+	load_textures(info);
 	init_map(info);
 	init_player(info);
 	ray_casting_image(info);

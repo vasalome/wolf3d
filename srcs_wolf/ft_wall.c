@@ -22,8 +22,11 @@ void	draw_wall(int x, int draw_start, int draw_end, t_info *info)
 	int		y;
 
 	y = -1;
-	while (++y <= draw_start)
-		mlx_pixel_put(info->window.mlx, info->window.win, x, y, 0xAAEEFF);
+	
+	while (++y <= draw_start);
+		//mlx_pixel_put(info->window.mlx, info->window.win, x, y, 0xAAEEFF);
+	
+		
 	while (++draw_start <= draw_end)
 		mlx_pixel_put(info->window.mlx, info->window.win, x,
 				draw_start, info->wall.color);

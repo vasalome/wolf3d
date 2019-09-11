@@ -65,16 +65,39 @@ int		ray_casting(t_info *info)
 	return (0);
 }
 
+void	skybox(t_info *info)
+{
+	int		offset;
+	offset = 640;
+	if (info->player.y_dir > 0)
+		offset = -offset;
+	info->tex.img = mlx_xpm_file_to_image(info->window.mlx, "sky.xpm", &info->tex.xhud, &info->tex.yhud);
+	mlx_put_image_to_window(info->window.mlx, info->window.win,
+			info->tex.img, offset * info->player.x_dir, -150);
+	mlx_put_image_to_window(info->window.mlx, info->window.win,
+			info->tex.img, offset * info->player.x_dir - info->tex.xhud, -150);
+	mlx_put_image_to_window(info->window.mlx, info->window.win,
+			info->tex.img, offset * info->player.x_dir + info->tex.xhud, -150);
+}
+
 /*
 ** put resulting image of raycasting on scren
 */
 
 void	ray_casting_image(t_info *info)
 {
+	skybox(info);
 	ray_casting(info);
 	if (info->map.map[(int)info->player.x_pos][(int)info->player.y_pos] == '4')
 		mlx_string_put(info->window.mlx, info->window.win, info->window.w / 2,
 			info->window.h / 2, 255, "GG BRO!");
-	/*mlx_put_image_to_window(info->window.mlx, info->window.win,
-			info->tex.img, info->window.w / 2, info->window.h - 65);*/
+	if (info->map.map[(int)info->player.x_pos][(int)info->player.y_pos] == '5')
+		mlx_string_put(info->window.mlx, info->window.win, info->window.w / 2,
+			info->window.h / 2, 255, "GG BRO!");
+	mlx_put_image_to_window(info->window.mlx, info->window.win, 
+				info->weapon[info->w_i].img, info->window.w / 2 - 4 + (rand() % 8), info->window.h - info->weapon[info->w_i].yhud);
+	printf("X: %f\n", info->player.x_dir);
+	printf("Y: %f\n", info->player.y_dir);
+	//mlx_put_image_to_window(info->window.mlx, info->window.win, img, 0, 0);
+	
 }

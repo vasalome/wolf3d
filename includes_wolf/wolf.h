@@ -26,6 +26,7 @@
 # define WIDTH 640
 # define HEIGHT 360
 
+
 typedef struct		s_fillmap
 {
 	int				fd;
@@ -56,6 +57,7 @@ typedef struct		s_tex
 	int				endian;
 	int				xhud;
 	int				yhud;
+	int				tex_x;
 }					t_tex;
 
 typedef struct		s_ray
@@ -127,6 +129,13 @@ typedef struct		s_wall
 	int				x;
 }					t_wall;
 
+typedef struct		s_weapon
+{
+	void			*img;
+	int				xhud;
+	int				yhud;
+}					t_weapon;
+
 typedef struct		s_info
 {
 	t_tex			tex;
@@ -135,6 +144,8 @@ typedef struct		s_info
 	t_window		window;
 	t_map			map;
 	t_wall			wall;
+	t_weapon		weapon[3];
+	int				w_i;
 }					t_info;
 
 void				init_map(t_info *info);
