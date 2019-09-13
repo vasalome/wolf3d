@@ -59,6 +59,20 @@ int		ray_casting(t_info *info)
 			info->wall.color = 0x3E2A1A;
 		else
 			info->wall.color = 0x25190F;
+		if (info->wall.trap == 1)
+		{
+			if (info->wall.side == 1)
+				info->wall.color = 0xB61A1A;
+			else
+				info->wall.color = 0xDB2222;
+		}
+		if (info->wall.trap == 2)
+		{
+			if (info->wall.side == 1)
+				info->wall.color = 0x8D4D22;
+			else
+				info->wall.color = 0xB66530;
+		}
 		draw_wall(info->wall.x, info->wall.draw_start - 1,
 				info->wall.draw_end, info);
 	}
@@ -80,24 +94,46 @@ void	skybox(t_info *info)
 			info->tex.img, offset * info->player.x_dir + info->tex.xhud, -150);
 }
 
+void	gameOver(t_info *info)
+{
+	void	*img;
+	int		w;
+	int		h;
+	img = mlx_xpm_file_to_image(info->window.mlx, "gameoverscreen.xpm", &w, &h);
+	mlx_put_image_to_window(info->window.mlx, info->window.win,
+			img, 0, 0);
+}
+
 /*
-** put resulting image of raycasting on scren
+** put resulting image of raycasting on screen
 */
 
 void	ray_casting_image(t_info *info)
 {
-	skybox(info);
-	ray_casting(info);
-	if (info->map.map[(int)info->player.x_pos][(int)info->player.y_pos] == '4')
-		mlx_string_put(info->window.mlx, info->window.win, info->window.w / 2,
-			info->window.h / 2, 255, "GG BRO!");
-	if (info->map.map[(int)info->player.x_pos][(int)info->player.y_pos] == '5')
-		mlx_string_put(info->window.mlx, info->window.win, info->window.w / 2,
-			info->window.h / 2, 255, "GG BRO!");
-	mlx_put_image_to_window(info->window.mlx, info->window.win, 
-				info->weapon[info->w_i].img, info->window.w / 2 - 4 + (rand() % 8), info->window.h - info->weapon[info->w_i].yhud);
-	printf("X: %f\n", info->player.x_dir);
-	printf("Y: %f\n", info->player.y_dir);
-	//mlx_put_image_to_window(info->window.mlx, info->window.win, img, 0, 0);
-	
+	if (!(info->player.life <= 0))
+	{
+		skybox(info);
+		ray_casting(info);
+		if (info->map.map[(int)info->player.x_pos][(int)info->player.y_pos] == '4')
+			mlx_string_put(info->window.mlx, info->window.win, info->window.w / 2,
+				info->window.h / 2, 255, "GG BRO!");
+		if (info->map.map[(int)info->player.x_pos][(int)info->player.y_pos] == '5')
+		{
+			if (info->player.canTrap)
+			{
+				info->player.canTrap = 0;
+				info->player.life -= 1;
+			}
+			mlx_string_put(info->window.mlx, info->window.win, info->window.w / 2,
+				info->window.h / 2, 255, "-1 life");
+		}
+		else
+			info->player.canTrap = 1;
+		mlx_put_image_to_window(info->window.mlx, info->window.win,
+				info->head[info->player.life - 1].img, 0, 0);
+		mlx_put_image_to_window(info->window.mlx, info->window.win, 
+					info->weapon[info->w_i].img, info->window.w / 2 - 4 + (rand() % 8), info->window.h - info->weapon[info->w_i].yhud);
+	}
+	else
+		gameOver(info);
 }

@@ -88,7 +88,8 @@ void	fill_map_plus(t_fillmap *fill, t_info *info)
 {
 	if (fill->line[fill->i] == '0' || fill->line[fill->i] == '1'
 	|| fill->line[fill->i] == '2' || fill->line[fill->i] == '3'
-	|| fill->line[fill->i] == '4')
+	|| fill->line[fill->i] == '4' || fill->line[fill->i] == '5'
+	|| fill->line[fill->i] == '6')
 		info->map.map[fill->x++][fill->y] = fill->line[fill->i];
 	if (fill->line[fill->i] == '3')
 		tp_destination(&fill->j, info, fill->line, &fill->i);

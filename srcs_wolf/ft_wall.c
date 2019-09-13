@@ -99,7 +99,13 @@ void	wall_detection(t_info *info)
 			info->map.y += info->map.y_step;
 			info->wall.side = 1;
 		}
-		if (info->map.map[info->map.x][info->map.y] == '1')
+		if (info->map.map[info->map.x][info->map.y] == '1' || info->map.map[info->map.x][info->map.y] == '5' || info->map.map[info->map.x][info->map.y] == '6')
 			info->map.hit = 1;
+		if (info->map.map[info->map.x][info->map.y] == '5')
+			info->wall.trap = 1;
+		else if (info->map.map[info->map.x][info->map.y] == '6')
+			info->wall.trap = 2;
+		else
+			info->wall.trap = 0;
 	}
 }

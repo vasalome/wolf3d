@@ -93,6 +93,8 @@ typedef struct		s_player
 	int				move_down;
 	int				*tp;
 	int				tp_index;
+	int				life;
+	int				canTrap;
 }					t_player;
 
 typedef struct		s_window
@@ -127,6 +129,7 @@ typedef struct		s_wall
 	int				color;
 	double			wall_distance;
 	int				x;
+	int				trap;
 }					t_wall;
 
 typedef struct		s_weapon
@@ -145,6 +148,7 @@ typedef struct		s_info
 	t_map			map;
 	t_wall			wall;
 	t_weapon		weapon[3];
+	t_weapon		head[8];
 	int				w_i;
 }					t_info;
 
