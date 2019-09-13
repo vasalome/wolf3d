@@ -56,22 +56,58 @@ int		ray_casting(t_info *info)
 		if (info->wall.draw_end >= info->window.h)
 			info->wall.draw_end = info->window.h - 1;
 		if (info->wall.side == 1)
+		{
 			info->wall.color = 0x3E2A1A;
+			info->wall.r = 62;
+			info->wall.g = 42;
+			info->wall.b = 26;
+			info->wall.a = 255;
+		}
 		else
+		{
 			info->wall.color = 0x25190F;
+			info->wall.r = 37;
+			info->wall.g = 25;
+			info->wall.b = 15;
+			info->wall.a = 255;
+		}
 		if (info->wall.trap == 1)
 		{
 			if (info->wall.side == 1)
-				info->wall.color = 0xB61A1A;
-			else
+			{
 				info->wall.color = 0xDB2222;
+				info->wall.r = 219;
+				info->wall.g = 34;
+				info->wall.b = 34;
+				info->wall.a = 255;
+			}
+			else
+			{
+				info->wall.color = 0xB61A1A;
+				info->wall.r = 182;
+				info->wall.g = 26;
+				info->wall.b = 26;
+				info->wall.a = 255;
+			}
 		}
 		if (info->wall.trap == 2)
 		{
 			if (info->wall.side == 1)
-				info->wall.color = 0x8D4D22;
-			else
+			{
 				info->wall.color = 0xB66530;
+				info->wall.r = 182;
+				info->wall.g = 101;
+				info->wall.b = 48;
+				info->wall.a = 255;
+			}
+			else
+			{
+				info->wall.color = 0x8D4D22;
+				info->wall.r = 141;
+				info->wall.g = 77;
+				info->wall.b = 34;
+				info->wall.a = 255;
+			}
 		}
 		draw_wall(info->wall.x, info->wall.draw_start - 1,
 				info->wall.draw_end, info);
@@ -82,19 +118,24 @@ int		ray_casting(t_info *info)
 void	skybox(t_info *info)
 {
 	int		offset;
-	offset = 640;
+	offset = WIDTH;
 	if (info->player.y_dir > 0)
 		offset = -offset;
-	info->tex.img = mlx_xpm_file_to_image(info->window.mlx, "sky.xpm", &info->tex.xhud, &info->tex.yhud);
-	mlx_put_image_to_window(info->window.mlx, info->window.win,
-			info->tex.img, offset * info->player.x_dir, -150);
-	mlx_put_image_to_window(info->window.mlx, info->window.win,
-			info->tex.img, offset * info->player.x_dir - info->tex.xhud, -150);
-	mlx_put_image_to_window(info->window.mlx, info->window.win,
-			info->tex.img, offset * info->player.x_dir + info->tex.xhud, -150);
+	info->tex.img = mlx_xpm_file_to_image(info->window.mlx, "sky.xpm",\
+		&info->tex.xhud, &info->tex.yhud);
+	mlx_put_image_to_window(info->window.mlx, info->window.win,\
+		info->tex.img, offset * info->player.x_dir, -150);
+	mlx_put_image_to_window(info->window.mlx, info->window.win,\
+		info->tex.img, offset * info->player.x_dir - info->tex.xhud, -150);
+	mlx_put_image_to_window(info->window.mlx, info->window.win,\
+		info->tex.img, offset * info->player.x_dir + info->tex.xhud, -150);
+	mlx_put_image_to_window(info->window.mlx, info->window.win,\
+		info->tex.img, offset * info->player.x_dir + (info->tex.xhud * 2) , -150);
+	mlx_put_image_to_window(info->window.mlx, info->window.win,\
+		info->tex.img, offset * info->player.x_dir - (info->tex.xhud * 2) , -150);
 }
 
-void	gameOver(t_info *info)
+void	game_over(t_info *info)
 {
 	void	*img;
 	int		w;
@@ -110,10 +151,13 @@ void	gameOver(t_info *info)
 
 void	ray_casting_image(t_info *info)
 {
-	if (!(info->player.life <= 0))
+	if (!(info->player.life - 1 <= 0))
 	{
 		skybox(info);
+		create_img(info);
 		ray_casting(info);
+		mlx_put_image_to_window(info->window.mlx, info->window.win,
+			info->fps.img, 0, 0);
 		if (info->map.map[(int)info->player.x_pos][(int)info->player.y_pos] == '4')
 			mlx_string_put(info->window.mlx, info->window.win, info->window.w / 2,
 				info->window.h / 2, 255, "GG BRO!");
@@ -129,11 +173,13 @@ void	ray_casting_image(t_info *info)
 		}
 		else
 			info->player.canTrap = 1;
-		mlx_put_image_to_window(info->window.mlx, info->window.win,
-				info->head[info->player.life - 1].img, 0, 0);
-		mlx_put_image_to_window(info->window.mlx, info->window.win, 
-					info->weapon[info->w_i].img, info->window.w / 2 - 4 + (rand() % 8), info->window.h - info->weapon[info->w_i].yhud);
+		mlx_put_image_to_window(info->window.mlx, info->window.win,\
+			info->head[info->player.life - 1].img, 0, 0);
+		mlx_put_image_to_window(info->window.mlx, info->window.win,\
+			info->weapon[info->w_i].img, info->window.w / 2 - 4 + (rand() % 8),\
+			info->window.h - info->weapon[info->w_i].yhud);
+		mlx_destroy_image(info->window.mlx, info->fps.img);
 	}
 	else
-		gameOver(info);
+		game_over(info);
 }

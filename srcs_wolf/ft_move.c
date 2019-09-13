@@ -77,11 +77,6 @@ void	move_plus1(t_info *info)
 		info->player.y_pos = info->player.tp[info->player.tp_index++] +
 			(info->player.y_pos - (int)info->player.y_pos);
 	}
-	/*if (info->map.map[(int)(info->player.x_pos)][(int)(info->player.y_pos
-				+ info->player.y_dir * info->player.movespeed)] == '3')
-	{
-		info->player.y_pos += info->player.y_dir * info->player.move_speed;
-	}*/
 }
 
 void	move_plus2(t_info *info)
@@ -101,11 +96,6 @@ void	move_plus2(t_info *info)
 		info->player.y_pos = info->player.tp[info->player.tp_index++] +
 			(info->player.y_pos - (int)info->player.y_pos);
 	}
-	/*if (info->map.map[(int)(info->player.x_pos)][(int)(info->player.y_pos
-			- info->player.y_dir * info->player.move_speed)] == '3')
-	{
-		info->player.y_pos -= info->player.y_dir * info->player.move_speed;
-	}*/
 }
 
 int		move(t_info *info)

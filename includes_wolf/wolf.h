@@ -23,8 +23,8 @@
 # include <sys/stat.h>
 # include <pthread.h>
 
-# define WIDTH 640
-# define HEIGHT 360
+# define WIDTH 1920
+# define HEIGHT 1080
 
 
 typedef struct		s_fillmap
@@ -127,6 +127,10 @@ typedef struct		s_wall
 	int				draw_end;
 	int				side;
 	int				color;
+	int				r;
+	int				g;
+	int				b;
+	int				a;
 	double			wall_distance;
 	int				x;
 	int				trap;
@@ -149,6 +153,8 @@ typedef struct		s_info
 	t_wall			wall;
 	t_weapon		weapon[3];
 	t_weapon		head[8];
+	t_weapon		img;
+	t_tex			fps;
 	int				w_i;
 }					t_info;
 
@@ -162,6 +168,7 @@ int					key_release(int keycode, t_info *info);
 
 int					set_map_size(t_info *info);
 int					create_map(t_info *info);
+void				create_img(t_info *info);
 void				fill_map(t_info *info);
 
 void				turn_left(t_info *info);

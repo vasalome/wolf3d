@@ -28,16 +28,26 @@ void	init_map(t_info *info)
 void	load_textures(t_info *info)
 {
 	info->w_i = 0;
-	info->weapon[0].img = mlx_xpm_file_to_image(info->window.mlx, "pistol/pistol1.xpm", &info->weapon[0].xhud, &info->weapon[0].yhud);
-	info->weapon[1].img = mlx_xpm_file_to_image(info->window.mlx, "knife/knife1.xpm", &info->weapon[1].xhud, &info->weapon[1].yhud);
-	info->head[0].img = mlx_xpm_file_to_image(info->window.mlx, "head/head8.xpm", &info->head[0].xhud, &info->head[0].yhud);
-	info->head[1].img = mlx_xpm_file_to_image(info->window.mlx, "head/head7.xpm", &info->head[1].xhud, &info->head[1].yhud);
-	info->head[2].img = mlx_xpm_file_to_image(info->window.mlx, "head/head6.xpm", &info->head[2].xhud, &info->head[2].yhud);
-	info->head[3].img = mlx_xpm_file_to_image(info->window.mlx, "head/head5.xpm", &info->head[3].xhud, &info->head[3].yhud);
-	info->head[4].img = mlx_xpm_file_to_image(info->window.mlx, "head/head4.xpm", &info->head[4].xhud, &info->head[4].yhud);
-	info->head[5].img = mlx_xpm_file_to_image(info->window.mlx, "head/head3.xpm", &info->head[5].xhud, &info->head[5].yhud);
-	info->head[6].img = mlx_xpm_file_to_image(info->window.mlx, "head/head2.xpm", &info->head[6].xhud, &info->head[6].yhud);
-	info->head[7].img = mlx_xpm_file_to_image(info->window.mlx, "head/head1.xpm", &info->head[7].xhud, &info->head[7].yhud);
+	info->weapon[0].img = mlx_xpm_file_to_image(info->window.mlx,\
+		"pistol/pistol1.xpm", &info->weapon[0].xhud, &info->weapon[0].yhud);
+	info->weapon[1].img = mlx_xpm_file_to_image(info->window.mlx,\
+		"knife/knife1.xpm", &info->weapon[1].xhud, &info->weapon[1].yhud);
+	info->head[0].img = mlx_xpm_file_to_image(info->window.mlx,\
+		"head/head8.xpm", &info->head[0].xhud, &info->head[0].yhud);
+	info->head[1].img = mlx_xpm_file_to_image(info->window.mlx,\
+		"head/head7.xpm", &info->head[1].xhud, &info->head[1].yhud);
+	info->head[2].img = mlx_xpm_file_to_image(info->window.mlx,\
+		"head/head6.xpm", &info->head[2].xhud, &info->head[2].yhud);
+	info->head[3].img = mlx_xpm_file_to_image(info->window.mlx,\
+		"head/head5.xpm", &info->head[3].xhud, &info->head[3].yhud);
+	info->head[4].img = mlx_xpm_file_to_image(info->window.mlx,\
+		"head/head4.xpm", &info->head[4].xhud, &info->head[4].yhud);
+	info->head[5].img = mlx_xpm_file_to_image(info->window.mlx,\
+		"head/head3.xpm", &info->head[5].xhud, &info->head[5].yhud);
+	info->head[6].img = mlx_xpm_file_to_image(info->window.mlx,\
+		"head/head2.xpm", &info->head[6].xhud, &info->head[6].yhud);
+	info->head[7].img = mlx_xpm_file_to_image(info->window.mlx,\
+		"head/head1.xpm", &info->head[7].xhud, &info->head[7].yhud);
 }
 
 void	init_player(t_info *info)
@@ -55,17 +65,17 @@ void	init_player(t_info *info)
 	info->player.turn_rate = 0.1;
 	info->player.move_speed = 0.05;
 	info->player.tp_index = 0;
-	info->player.life = 2;
+	info->player.life = 8;
 	info->player.canTrap = 1;
 }
 
 void	init_window(t_info *info)
-{	
+{
 	info->window.w = WIDTH;
 	info->window.h = HEIGHT;
 	info->window.mlx = mlx_init();
-	info->window.win = mlx_new_window(info->window.mlx, info->window.w,
-			info->window.h, "LES NAZIS C'EST PAS TRES LE COOL");
+	info->window.win = mlx_new_window(info->window.mlx, info->window.w,\
+		info->window.h, "LES NAZIS C'EST PAS TRES LE COOL");
 }
 
 void	init(t_info *info)

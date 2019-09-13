@@ -17,22 +17,35 @@
 ** draw image with vertical lines
 */
 
+void	create_img(t_info *info)
+{
+	info->fps.img = mlx_new_image(info->window.mlx, WIDTH, HEIGHT);
+	info->fps.data = mlx_get_data_addr(info->fps.img, &info->fps.bpp,\
+		&info->fps.sizeline, &info->fps.endian);
+}
+
 void	draw_wall(int x, int draw_start, int draw_end, t_info *info)
 {
 	int		y;
 
 	y = -1;
-	
-	while (++y <= draw_start);
-		//mlx_pixel_put(info->window.mlx, info->window.win, x, y, 0xAAEEFF);
-	
-		
+	while (++y <= draw_start)
+		info->fps.data[x * 4 + 4 * WIDTH * y + 3] = (char)255;	
 	while (++draw_start <= draw_end)
-		mlx_pixel_put(info->window.mlx, info->window.win, x,
-				draw_start, info->wall.color);
+	{
+		info->fps.data[x * 4 + 4 * WIDTH * draw_start] = (char)info->wall.b;
+		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 1] = (char)info->wall.g;
+		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 2] = (char)info->wall.r;
+		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 3] = (char)0;
+	}
 	y = draw_start - 1;
 	while (++y < info->window.h)
-		mlx_pixel_put(info->window.mlx, info->window.win, x, y, 0xDEB887);
+	{
+		info->fps.data[x * 4 + 4 * WIDTH * y] = (char)226;
+		info->fps.data[x * 4 + 4 * WIDTH * y + 1] = (char)0;
+		info->fps.data[x * 4 + 4 * WIDTH * y + 2] = (char)229;
+		info->fps.data[x * 4 + 4 * WIDTH * y + 3] = (char)0;
+	}
 }
 
 /*
@@ -41,39 +54,39 @@ void	draw_wall(int x, int draw_start, int draw_end, t_info *info)
 
 void	wall_detection_init_y(t_info *info)
 {
-	info->ray.y_delta_distance = sqrt(1 + (info->ray.x_ray_direction *
-				info->ray.x_ray_direction) / (info->ray.y_ray_direction *
-					info->ray.y_ray_direction));
+	info->ray.y_delta_distance = sqrt(1 + (info->ray.x_ray_direction *\
+		info->ray.x_ray_direction) / (info->ray.y_ray_direction *\
+		info->ray.y_ray_direction));
 	if (info->ray.y_ray_direction < 0)
 	{
 		info->map.y_step = -1;
-		info->ray.y_side_distance = (info->ray.y_ray_position -
-				info->map.y) * info->ray.y_delta_distance;
+		info->ray.y_side_distance = (info->ray.y_ray_position -\
+			info->map.y) * info->ray.y_delta_distance;
 	}
 	else
 	{
 		info->map.y_step = 1;
-		info->ray.y_side_distance = (info->map.y + 1.0 -
-				info->ray.y_ray_position) * info->ray.y_delta_distance;
+		info->ray.y_side_distance = (info->map.y + 1.0 -\
+			info->ray.y_ray_position) * info->ray.y_delta_distance;
 	}
 }
 
 void	wall_detection_init_x(t_info *info)
 {
-	info->ray.x_delta_distance = sqrt(1 + (info->ray.y_ray_direction *
-				info->ray.y_ray_direction) / (info->ray.x_ray_direction *
-					info->ray.x_ray_direction));
+	info->ray.x_delta_distance = sqrt(1 + (info->ray.y_ray_direction *\
+		info->ray.y_ray_direction) / (info->ray.x_ray_direction *\
+		info->ray.x_ray_direction));
 	if (info->ray.x_ray_direction < 0)
 	{
 		info->map.x_step = -1;
-		info->ray.x_side_distance = (info->ray.x_ray_position -
-				info->map.x) * info->ray.x_delta_distance;
+		info->ray.x_side_distance = (info->ray.x_ray_position -\
+			info->map.x) * info->ray.x_delta_distance;
 	}
 	else
 	{
 		info->map.x_step = 1;
-		info->ray.x_side_distance = (info->map.x + 1.0 -
-				info->ray.x_ray_position) * info->ray.x_delta_distance;
+		info->ray.x_side_distance = (info->map.x + 1.0 -\
+			info->ray.x_ray_position) * info->ray.x_delta_distance;
 	}
 	wall_detection_init_y(info);
 }
@@ -99,7 +112,9 @@ void	wall_detection(t_info *info)
 			info->map.y += info->map.y_step;
 			info->wall.side = 1;
 		}
-		if (info->map.map[info->map.x][info->map.y] == '1' || info->map.map[info->map.x][info->map.y] == '5' || info->map.map[info->map.x][info->map.y] == '6')
+		if (info->map.map[info->map.x][info->map.y] == '1' ||\
+			info->map.map[info->map.x][info->map.y] == '5' ||\
+			info->map.map[info->map.x][info->map.y] == '6')
 			info->map.hit = 1;
 		if (info->map.map[info->map.x][info->map.y] == '5')
 			info->wall.trap = 1;
