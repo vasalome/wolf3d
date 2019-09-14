@@ -19,14 +19,19 @@
 
 void	init_map(t_info *info)
 {
+	//printf("init_map IN\n");
+
 	set_map_size(info);
 	create_map(info);
 	fill_map(info);
 	get_spawn(info);
+
+	//printf("init_map OUT\n");
 }
 
 void	load_textures(t_info *info)
 {
+	//printf("load_textures IN\n");
 	info->w_i = 0;
 	info->weapon[0].img = mlx_xpm_file_to_image(info->window.mlx,\
 		"pistol/pistol1.xpm", &info->weapon[0].xhud, &info->weapon[0].yhud);
@@ -48,10 +53,12 @@ void	load_textures(t_info *info)
 		"head/head2.xpm", &info->head[6].xhud, &info->head[6].yhud);
 	info->head[7].img = mlx_xpm_file_to_image(info->window.mlx,\
 		"head/head1.xpm", &info->head[7].xhud, &info->head[7].yhud);
+	//printf("load_textures OUT\n");
 }
 
 void	init_player(t_info *info)
 {
+	//printf("init_player IN\n");
 	info->player.x_pos = info->map.x_spawn;
 	info->player.y_pos = info->map.y_spawn;
 	info->player.x_dir = -1;
@@ -67,22 +74,27 @@ void	init_player(t_info *info)
 	info->player.tp_index = 0;
 	info->player.life = 8;
 	info->player.canTrap = 1;
+	//printf("init_player OUT\n");
 }
 
 void	init_window(t_info *info)
 {
+	//printf("init_window IN\n");
 	info->window.w = WIDTH;
 	info->window.h = HEIGHT;
 	info->window.mlx = mlx_init();
 	info->window.win = mlx_new_window(info->window.mlx, info->window.w,\
 		info->window.h, "LES NAZIS C'EST PAS TRES LE COOL");
+	//printf("init_window OUT\n");
 }
 
 void	init(t_info *info)
 {
+	//printf("init IN\n");
 	init_window(info);
 	load_textures(info);
 	init_map(info);
 	init_player(info);
 	ray_casting_image(info);
+	//printf("init OUT\n");
 }

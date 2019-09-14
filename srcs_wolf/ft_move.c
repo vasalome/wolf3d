@@ -19,6 +19,7 @@
 
 void	turn_left(t_info *info)
 {
+	//printf("__turn_left IN\n");
 	if (info->player.turn_left == 1)
 	{
 		info->player.x_old_direction = info->player.x_dir;
@@ -36,10 +37,12 @@ void	turn_left(t_info *info)
 			sin(info->player.turn_rate) + info->player.y_plane *
 			cos(info->player.turn_rate);
 	}
+	//printf("__turn_left OUT\n");
 }
 
 void	turn_right(t_info *info)
 {
+	//printf("__turn_right IN\n");
 	if (info->player.turn_right == 1)
 	{
 		info->player.x_old_direction = info->player.x_dir;
@@ -57,11 +60,13 @@ void	turn_right(t_info *info)
 			sin(-info->player.turn_rate) + info->player.y_plane *
 			cos(-info->player.turn_rate);
 	}
+	//printf("__turn_right OUT\n");
 	turn_left(info);
 }
 
 void	move_plus1(t_info *info)
 {
+	//printf("move_plus1 IN\n");
 	if (info->map.map[(int)(info->player.x_pos + info->player.x_dir
 				* info->player.move_speed)][(int)(info->player.y_pos)] != '1')
 		info->player.x_pos += info->player.x_dir * info->player.move_speed;
@@ -77,10 +82,12 @@ void	move_plus1(t_info *info)
 		info->player.y_pos = info->player.tp[info->player.tp_index++] +
 			(info->player.y_pos - (int)info->player.y_pos);
 	}
+	//printf("move_plus1 OUT\n");
 }
 
 void	move_plus2(t_info *info)
 {
+	//printf("move_plus2 IN\n");
 	if (info->map.map[(int)(info->player.x_pos - info->player.x_dir
 			* info->player.move_speed)][(int)(info->player.y_pos)] != '1')
 		info->player.x_pos -= info->player.x_dir * info->player.move_speed;
@@ -96,10 +103,12 @@ void	move_plus2(t_info *info)
 		info->player.y_pos = info->player.tp[info->player.tp_index++] +
 			(info->player.y_pos - (int)info->player.y_pos);
 	}
+	//printf("move_plus2 OUT\n");
 }
 
 int		move(t_info *info)
 {
+	//printf("\nmove IN\n\n");
 	if (info->player.move_up == 1)
 		move_plus1(info);
 	if (info->player.move_down == 1)
@@ -109,4 +118,5 @@ int		move(t_info *info)
 				info->player.turn_right || info->player.turn_left) == 1)
 		ray_casting_image(info);
 	return (0);
+	//printf("move OUT\n");
 }

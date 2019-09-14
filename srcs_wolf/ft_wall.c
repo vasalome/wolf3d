@@ -19,13 +19,16 @@
 
 void	create_img(t_info *info)
 {
+	//printf("create_img IN\n");
 	info->fps.img = mlx_new_image(info->window.mlx, WIDTH, HEIGHT);
 	info->fps.data = mlx_get_data_addr(info->fps.img, &info->fps.bpp,\
 		&info->fps.sizeline, &info->fps.endian);
+	//printf("create_img OUT\n");
 }
 
 void	draw_wall(int x, int draw_start, int draw_end, t_info *info)
 {
+	//printf("draw_wall IN\n");
 	int		y;
 
 	y = -1;
@@ -46,6 +49,7 @@ void	draw_wall(int x, int draw_start, int draw_end, t_info *info)
 		info->fps.data[x * 4 + 4 * WIDTH * y + 2] = (char)229;
 		info->fps.data[x * 4 + 4 * WIDTH * y + 3] = (char)0;
 	}
+	//printf("draw_wall OUT\n");
 }
 
 /*
@@ -54,6 +58,7 @@ void	draw_wall(int x, int draw_start, int draw_end, t_info *info)
 
 void	wall_detection_init_y(t_info *info)
 {
+	//printf("__wall_detection_init_y IN\n");
 	info->ray.y_delta_distance = sqrt(1 + (info->ray.x_ray_direction *\
 		info->ray.x_ray_direction) / (info->ray.y_ray_direction *\
 		info->ray.y_ray_direction));
@@ -69,10 +74,12 @@ void	wall_detection_init_y(t_info *info)
 		info->ray.y_side_distance = (info->map.y + 1.0 -\
 			info->ray.y_ray_position) * info->ray.y_delta_distance;
 	}
+	//printf("__wall_detection_init_y OUT\n");
 }
 
 void	wall_detection_init_x(t_info *info)
 {
+	//printf("__wall_detection_init_x IN\n");
 	info->ray.x_delta_distance = sqrt(1 + (info->ray.y_ray_direction *\
 		info->ray.y_ray_direction) / (info->ray.x_ray_direction *\
 		info->ray.x_ray_direction));
@@ -88,6 +95,7 @@ void	wall_detection_init_x(t_info *info)
 		info->ray.x_side_distance = (info->map.x + 1.0 -\
 			info->ray.x_ray_position) * info->ray.x_delta_distance;
 	}
+	//printf("__wall_detection_init_x OUT\n");
 	wall_detection_init_y(info);
 }
 
@@ -97,17 +105,21 @@ void	wall_detection_init_x(t_info *info)
 
 void	wall_detection(t_info *info)
 {
+	//printf("\n__wall_detection IN\n\n");
 	info->map.hit = 0;
 	while (info->map.hit == 0)
 	{
+		//write(1, "WD-> 1\n", 7);
 		if (info->ray.x_side_distance < info->ray.y_side_distance)
 		{
+			write(1, "WD-> 2\n", 7);
 			info->ray.x_side_distance += info->ray.x_delta_distance;
 			info->map.x += info->map.x_step;
 			info->wall.side = 0;
 		}
 		else
 		{
+			write(1, "WD-> 3\n", 7);
 			info->ray.y_side_distance += info->ray.y_delta_distance;
 			info->map.y += info->map.y_step;
 			info->wall.side = 1;
@@ -115,12 +127,25 @@ void	wall_detection(t_info *info)
 		if (info->map.map[info->map.x][info->map.y] == '1' ||\
 			info->map.map[info->map.x][info->map.y] == '5' ||\
 			info->map.map[info->map.x][info->map.y] == '6')
+		{
+			write(1, "WD-> 4\n", 7);
 			info->map.hit = 1;
+		}
 		if (info->map.map[info->map.x][info->map.y] == '5')
+		{
 			info->wall.trap = 1;
+			write(1, "WD-> 5\n", 7);
+		}
 		else if (info->map.map[info->map.x][info->map.y] == '6')
+		{
 			info->wall.trap = 2;
+			write(1, "WD-> 6\n", 7);
+		}
 		else
+		{
 			info->wall.trap = 0;
+			write(1, "WD-> 7\n", 7);
+		}
 	}
+	//printf("\n__wall_detection OUT\n\n");
 }

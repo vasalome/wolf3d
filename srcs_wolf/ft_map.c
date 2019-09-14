@@ -19,6 +19,7 @@
 
 int		set_map_size(t_info *info)
 {
+	//printf("set_map_size IN");
 	t_setmap	set;
 
 	set.line = NULL;
@@ -42,11 +43,13 @@ int		set_map_size(t_info *info)
 	info->player.tp = set.tlp;
 	info->map.height = set.h;
 	info->map.width = set.w;
+	//printf("set_map_size OUT\n");
 	return (0);
 }
 
 int		create_map(t_info *info)
 {
+	//printf("create_map IN\n");
 	char	**map;
 	int		i;
 
@@ -59,11 +62,13 @@ int		create_map(t_info *info)
 			return (-1);
 	}
 	info->map.map = map;
+	//printf("create_map OUT\n");
 	return (0);
 }
 
 void	tp_destination(int *x, t_info *info, char *str, int *i)
 {
+	//printf("tp_destination IN\n");
 	*i += 1;
 	info->player.tp[*x] = 0;
 	while (str[*i] != ',')
@@ -82,10 +87,12 @@ void	tp_destination(int *x, t_info *info, char *str, int *i)
 		*i += 1;
 	}
 	*x += 1;
+	//printf("tp_destination OUT\n");
 }
 
 void	fill_map_plus(t_fillmap *fill, t_info *info)
 {
+	//printf("fill_map_plus IN\n");
 	if (fill->line[fill->i] == '0' || fill->line[fill->i] == '1'
 	|| fill->line[fill->i] == '2' || fill->line[fill->i] == '3'
 	|| fill->line[fill->i] == '4' || fill->line[fill->i] == '5'
@@ -93,10 +100,12 @@ void	fill_map_plus(t_fillmap *fill, t_info *info)
 		info->map.map[fill->x++][fill->y] = fill->line[fill->i];
 	if (fill->line[fill->i] == '3')
 		tp_destination(&fill->j, info, fill->line, &fill->i);
+	//printf("fill_map_plus OUT\n");
 }
 
 void	fill_map(t_info *info)
 {
+	//printf("fill_map IN\n");
 	t_fillmap	fill;
 
 	fill.i = 0;
@@ -117,4 +126,5 @@ void	fill_map(t_info *info)
 		fill.y++;
 		fill.x = 0;
 	}
+	//printf("fill_map OUT\n");
 }

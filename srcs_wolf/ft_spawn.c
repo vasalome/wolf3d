@@ -19,6 +19,7 @@
 
 int		get_spawn(t_info *info)
 {
+	//printf("get_spawn IN\n");
 	int		x;
 	int		y;
 
@@ -40,5 +41,6 @@ int		get_spawn(t_info *info)
 		}
 		x++;
 	}
+	//printf("get_spawn OUT\n");
 	return (0);
 }
