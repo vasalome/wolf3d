@@ -109,7 +109,7 @@ void	wall_detection(t_info *info)
 	info->map.hit = 0;
 	while (info->map.hit == 0)
 	{
-		//write(1, "WD-> 1\n", 7);
+		write(1, "WD-> 1\n", 7);
 		if (info->ray.x_side_distance < info->ray.y_side_distance)
 		{
 			write(1, "WD-> 2\n", 7);
