@@ -60,6 +60,7 @@ int		ray_casting(t_info *info)
 			info->wall.draw_end = info->window.h - 1;
 		if (info->wall.side == 1)
 		{
+			info->w_j = 0;
 			info->wall.color = 0x3E2A1A;
 			info->wall.r = 62;
 			info->wall.g = 42;
@@ -68,6 +69,7 @@ int		ray_casting(t_info *info)
 		}
 		else
 		{
+			info->w_j = 0;
 			info->wall.color = 0x25190F;
 			info->wall.r = 37;
 			info->wall.g = 25;
@@ -76,8 +78,10 @@ int		ray_casting(t_info *info)
 		}
 		if (info->wall.trap == 1)
 		{
-			if (info->wall.side == 1)
+			info->w_j = 1;
+			/*if (info->wall.side == 1)
 			{
+				
 				info->wall.color = 0xDB2222;
 				info->wall.r = 219;
 				info->wall.g = 34;
@@ -91,11 +95,12 @@ int		ray_casting(t_info *info)
 				info->wall.g = 26;
 				info->wall.b = 26;
 				info->wall.a = 255;
-			}
+			}*/
 		}
 		if (info->wall.trap == 2)
 		{
-			if (info->wall.side == 1)
+			info->w_j = 1;
+			/*if (info->wall.side == 1)
 			{
 				info->wall.color = 0xB66530;
 				info->wall.r = 182;
@@ -110,8 +115,24 @@ int		ray_casting(t_info *info)
 				info->wall.g = 77;
 				info->wall.b = 34;
 				info->wall.a = 255;
-			}
+			}*/
 		}
+
+		//Wall textures
+		if (info->wall.side == 0)
+			info->wall.ux = info->player.y_pos + info->wall.wall_distance * info->ray.y_ray_direction;
+		else
+			info->wall.ux = info->player.x_pos + info->wall.wall_distance * info->ray.x_ray_direction;
+		info->wall.ux -= floor((info->wall.ux));
+		info->wt[info->w_j].tex_x = (int)(info->wall.ux * (double)info->wt[info->w_j].xhud);
+
+		if (info->wall.side == 0 && info->ray.x_ray_direction > 0)
+			info->wt[info->w_j].tex_x = info->wt[info->w_j].xhud - info->wt[info->w_j].tex_x - 1;
+		if (info->wall.side == 1 && info->ray.y_ray_direction < 0)
+			info->wt[info->w_j].tex_x = info->wt[info->w_j].xhud - info->wt[info->w_j].tex_x - 1;
+
+		//printf("%f\n",info->wall.x);
+
 		draw_wall(info->wall.x, info->wall.draw_start - 1,
 				info->wall.draw_end, info);
 	}

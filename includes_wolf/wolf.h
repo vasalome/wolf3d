@@ -58,6 +58,7 @@ typedef struct		s_tex
 	int				xhud;
 	int				yhud;
 	int				tex_x;
+	int				tex_y;
 }					t_tex;
 
 typedef struct		s_ray
@@ -133,6 +134,7 @@ typedef struct		s_wall
 	int				a;
 	double			wall_distance;
 	int				x;
+	double			ux;
 	int				trap;
 }					t_wall;
 
@@ -155,7 +157,10 @@ typedef struct		s_info
 	t_weapon		head[8];
 	t_weapon		img;
 	t_tex			fps;
+	t_tex			wt[2];
+	t_tex			wf;
 	int				w_i;
+	int				w_j;
 }					t_info;
 
 void				init_map(t_info *info);

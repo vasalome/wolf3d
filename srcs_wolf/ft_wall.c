@@ -30,23 +30,33 @@ void	draw_wall(int x, int draw_start, int draw_end, t_info *info)
 {
 	//printf("draw_wall IN\n");
 	int		y;
+	int 	d;
+	int		texY;
 
 	y = -1;
 	while (++y <= draw_start)
 		info->fps.data[x * 4 + 4 * WIDTH * y + 3] = (char)255;	
 	while (++draw_start <= draw_end)
 	{
-		info->fps.data[x * 4 + 4 * WIDTH * draw_start] = (char)info->wall.b;
+		/*info->fps.data[x * 4 + 4 * WIDTH * draw_start] = (char)info->wall.b;
 		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 1] = (char)info->wall.g;
 		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 2] = (char)info->wall.r;
+		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 3] = (char)0;*/
+		d = draw_start * 256 - info->window.h * 128 + info->wall.line_height * 128;
+		texY = ((d * info->wt[info->w_j].yhud) / info->wall.line_height) / 256;
+		
+		info->fps.data[x * 4 + 4 * WIDTH * draw_start] = (char)info->wt[info->w_j].data[info->wt[info->w_j].tex_x * 4 + 4 * info->wt[info->w_j].xhud * texY];
+		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 1] = (char)info->wt[info->w_j].data[info->wt[info->w_j].tex_x * 4 + 4 * info->wt[info->w_j].xhud * texY + 1];
+		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 2] = (char)info->wt[info->w_j].data[info->wt[info->w_j].tex_x * 4 + 4 * info->wt[info->w_j].xhud * texY + 2];
 		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 3] = (char)0;
 	}
 	y = draw_start - 1;
+
 	while (++y < info->window.h)
 	{
-		info->fps.data[x * 4 + 4 * WIDTH * y] = (char)226;
-		info->fps.data[x * 4 + 4 * WIDTH * y + 1] = (char)0;
-		info->fps.data[x * 4 + 4 * WIDTH * y + 2] = (char)229;
+		info->fps.data[x * 4 + 4 * WIDTH * y] = (char)120;
+		info->fps.data[x * 4 + 4 * WIDTH * y + 1] = (char)120;
+		info->fps.data[x * 4 + 4 * WIDTH * y + 2] = (char)120;
 		info->fps.data[x * 4 + 4 * WIDTH * y + 3] = (char)0;
 	}
 	//printf("draw_wall OUT\n");
@@ -109,17 +119,17 @@ void	wall_detection(t_info *info)
 	info->map.hit = 0;
 	while (info->map.hit == 0)
 	{
-		write(1, "WD-> 1\n", 7);
+		//write(1, "WD-> 1\n", 7);
 		if (info->ray.x_side_distance < info->ray.y_side_distance)
 		{
-			write(1, "WD-> 2\n", 7);
+			//write(1, "WD-> 2\n", 7);
 			info->ray.x_side_distance += info->ray.x_delta_distance;
 			info->map.x += info->map.x_step;
 			info->wall.side = 0;
 		}
 		else
 		{
-			write(1, "WD-> 3\n", 7);
+			//write(1, "WD-> 3\n", 7);
 			info->ray.y_side_distance += info->ray.y_delta_distance;
 			info->map.y += info->map.y_step;
 			info->wall.side = 1;
@@ -128,23 +138,23 @@ void	wall_detection(t_info *info)
 			info->map.map[info->map.x][info->map.y] == '5' ||\
 			info->map.map[info->map.x][info->map.y] == '6')
 		{
-			write(1, "WD-> 4\n", 7);
+			//write(1, "WD-> 4\n", 7);
 			info->map.hit = 1;
 		}
 		if (info->map.map[info->map.x][info->map.y] == '5')
 		{
 			info->wall.trap = 1;
-			write(1, "WD-> 5\n", 7);
+			//write(1, "WD-> 5\n", 7);
 		}
 		else if (info->map.map[info->map.x][info->map.y] == '6')
 		{
 			info->wall.trap = 2;
-			write(1, "WD-> 6\n", 7);
+			//write(1, "WD-> 6\n", 7);
 		}
 		else
 		{
 			info->wall.trap = 0;
-			write(1, "WD-> 7\n", 7);
+			//write(1, "WD-> 7\n", 7);
 		}
 	}
 	//printf("\n__wall_detection OUT\n\n");

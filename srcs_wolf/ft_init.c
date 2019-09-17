@@ -33,6 +33,7 @@ void	load_textures(t_info *info)
 {
 	//printf("load_textures IN\n");
 	info->w_i = 0;
+	info->w_j = 0;
 	info->weapon[0].img = mlx_xpm_file_to_image(info->window.mlx,\
 		"pistol/pistol1.xpm", &info->weapon[0].xhud, &info->weapon[0].yhud);
 	info->weapon[1].img = mlx_xpm_file_to_image(info->window.mlx,\
@@ -53,6 +54,15 @@ void	load_textures(t_info *info)
 		"head/head2.xpm", &info->head[6].xhud, &info->head[6].yhud);
 	info->head[7].img = mlx_xpm_file_to_image(info->window.mlx,\
 		"head/head1.xpm", &info->head[7].xhud, &info->head[7].yhud);
+	info->wt[0].img = mlx_xpm_file_to_image(info->window.mlx,"testWall.xpm", &info->wt[0].xhud, &info->wt[0].yhud);
+	info->wt[0].data = mlx_get_data_addr(info->wt[0].img, &info->wt[0].bpp,\
+		&info->wt[0].sizeline, &info->wt[0].endian);
+	info->wt[1].img = mlx_xpm_file_to_image(info->window.mlx,"door.xpm", &info->wt[1].xhud, &info->wt[1].yhud);
+	info->wt[1].data = mlx_get_data_addr(info->wt[1].img, &info->wt[1].bpp,\
+		&info->wt[1].sizeline, &info->wt[1].endian);
+	info->wf.img = mlx_xpm_file_to_image(info->window.mlx,"dirt.xpm", &info->wf.xhud, &info->wf.yhud);
+	info->wf.data = mlx_get_data_addr(info->wf.img, &info->wf.bpp,\
+		&info->wf.sizeline, &info->wf.endian);
 	//printf("load_textures OUT\n");
 }
 

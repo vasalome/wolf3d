@@ -24,15 +24,16 @@ int		main(int argc, char **argv)
 	}
 	info.map.name = argv[1];
 	init(&info);
-	printf("AFTER INFO: WHY CRASH _____1\n");
+	//printf("AFTER INFO: WHY CRASH _____1\n");
 	mlx_hook(info.window.win, 17, 0, red_cross, (void *)0);
-	printf("AFTER INFO: WHY CRASH _____2\n");
+	//printf("AFTER INFO: WHY CRASH _____2\n");
 	mlx_hook(info.window.win, 2, (1L << 0), key_press, &info);
-	printf("AFTER INFO: WHY CRASH _____3\n");
+	//printf("AFTER INFO: WHY CRASH _____3\n");
 	mlx_hook(info.window.win, 3, (1L << 1), key_release, &info);
-	printf("AFTER INFO: WHY CRASH _____4\n");
+	//printf("AFTER INFO: WHY CRASH _____4\n");
 	mlx_loop_hook(info.window.mlx, move, &info);
-	printf("AFTER INFO: WHY CRASH _____5\n");
-	mlx_loop(info.window.mlx);
+	//printf("AFTER INFO: WHY CRASH _____5\n");
+	if (!(mlx_loop(info.window.mlx)))
+		exit(0);
 	return (0);
 }

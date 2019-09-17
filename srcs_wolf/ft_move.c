@@ -66,6 +66,9 @@ void	turn_right(t_info *info)
 
 void	move_plus1(t_info *info)
 {
+	int		x;
+	int		y;
+
 	//printf("move_plus1 IN\n");
 	if (info->map.map[(int)(info->player.x_pos + info->player.x_dir
 				* info->player.move_speed)][(int)(info->player.y_pos)] != '1')
@@ -77,10 +80,14 @@ void	move_plus1(t_info *info)
 				* info->player.move_speed)][(int)(info->player.y_pos)] == '3')
 	{
 		info->player.x_pos += info->player.x_dir * info->player.move_speed;
-		info->player.x_pos = info->player.tp[info->player.tp_index++] +
-			(info->player.x_pos - (int)info->player.x_pos);
-		info->player.y_pos = info->player.tp[info->player.tp_index++] +
-			(info->player.y_pos - (int)info->player.y_pos);
+		x = (int)((info->player.tp[((int)info->player.x_pos + 1) * 100 + (int)info->player.y_pos] / 100) - 10);
+		y = (int)(info->player.tp[((int)info->player.x_pos + 1) * 100 + (int)info->player.y_pos] % 100);
+		printf("%d   %d\n", x, y);
+		if (!(x > info->map.width || y > info->map.height || y < 0 || x < 0))
+		{
+			info->player.x_pos = x + (info->player.x_pos - (int)info->player.x_pos);
+			info->player.y_pos = y + (info->player.y_pos - (int)info->player.y_pos);
+		}
 	}
 	//printf("move_plus1 OUT\n");
 }

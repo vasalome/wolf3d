@@ -66,27 +66,28 @@ int		create_map(t_info *info)
 	return (0);
 }
 
-void	tp_destination(int *x, t_info *info, char *str, int *i)
+void	tp_destination(t_fillmap *fill, t_info *info, char *str, int *i)
 {
 	//printf("tp_destination IN\n");
+	int		x;
+
 	*i += 1;
-	info->player.tp[*x] = 0;
+	x = fill->x * 100 + fill->y;
+	info->player.tp[x] = 10;
 	while (str[*i] != ',')
 	{
-		info->player.tp[*x] *= 10;
-		info->player.tp[*x] += str[*i] - 48;
+		info->player.tp[x] += str[*i] - 48;
 		*i += 1;
 	}
-	*x += 1;
+	fill->j += 1;
 	*i += 1;
-	info->player.tp[*x] = 0;
+	info->player.tp[x] *= 100;
 	while (str[*i] != ' ')
 	{
-		info->player.tp[*x] *= 10;
-		info->player.tp[*x] += str[*i] - 48;
+		info->player.tp[x] += str[*i] - 48;
 		*i += 1;
 	}
-	*x += 1;
+	fill->j += 1;
 	//printf("tp_destination OUT\n");
 }
 
@@ -99,7 +100,7 @@ void	fill_map_plus(t_fillmap *fill, t_info *info)
 	|| fill->line[fill->i] == '6')
 		info->map.map[fill->x++][fill->y] = fill->line[fill->i];
 	if (fill->line[fill->i] == '3')
-		tp_destination(&fill->j, info, fill->line, &fill->i);
+		tp_destination(fill, info, fill->line, &fill->i);
 	//printf("fill_map_plus OUT\n");
 }
 
