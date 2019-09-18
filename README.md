@@ -25,19 +25,19 @@ List :
     > ai_lab : créé
 - Textures :
     > Mur 
-    > - face_a = "tete d'hitler" [light]
-    > - face_b = "tete lnieto" [mid-light]
-    > - face_c = "croix gamme IA" [dark]
-    > - face_d = "tete vasalome" [mid-light]
+    > - face_a = "tete d'hitler" [light] FAIT
+    > - face_b = "tete lnieto" [mid-light] FAIT
+    > - face_c = "croix gamme IA" [dark] FAIT
+    > - face_d = "tete vasalome" [mid-light] FAIT
     >
     > Porte
-    > - face_a = "porte" [light]
-    > - face_b = "porte" [mid-light]
-    > - face_c = "porte" [dark]
-    > - face_d = "porte" [mid-light]
+    > - face_a = "porte" [light] FAIT
+    > - face_b = "porte" [mid-light] FAIT
+    > - face_c = "porte" [dark] FAIT
+    > - face_d = "porte" [mid-light] FAIT
     >
     > Piege
     > Weapons : https://www.spriters-resource.com/fullview/4111/
-- 10 images : vie (100% - 90 % - 80 etc..)
+- 10 images : vie (100% - 90 % - 80 etc..) FAIT
 - Game over screen
 
