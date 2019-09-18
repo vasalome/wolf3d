@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:39:26 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/13 16:27:36 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/18 17:37:32 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,6 @@
 
 int		get_spawn(t_info *info)
 {
-	//printf("get_spawn IN\n");
 	int		x;
 	int		y;
 
@@ -41,6 +40,5 @@ int		get_spawn(t_info *info)
 		}
 		x++;
 	}
-	//printf("get_spawn OUT\n");
 	return (0);
 }

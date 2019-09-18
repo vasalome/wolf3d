@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:40:07 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/13 16:27:32 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/18 18:38:11 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,6 @@
 
 int		set_map_size(t_info *info)
 {
-	//printf("set_map_size IN");
 	t_setmap	set;
 	int			ret;
 
@@ -44,13 +43,11 @@ int		set_map_size(t_info *info)
 		return (-1);
 	info->map.height = set.h;
 	info->map.width = set.w;
-	//printf("set_map_size OUT\n");
 	return (0);
 }
 
 int		create_map(t_info *info)
 {
-	//printf("create_map IN\n");
 	char	**map;
 	int		i;
 
@@ -63,13 +60,11 @@ int		create_map(t_info *info)
 			return (-1);
 	}
 	info->map.map = map;
-	//printf("create_map OUT\n");
 	return (0);
 }
 
 void	tp_destination(t_fillmap *fill, t_info *info, char *str, int *i)
 {
-	//printf("tp_destination IN\n");
 	int		x;
 	int		ten;
 
@@ -96,25 +91,21 @@ void	tp_destination(t_fillmap *fill, t_info *info, char *str, int *i)
 		*i += 1;
 	}
 	fill->j += 1;
-	//printf("tp_destination OUT\n");
 }
 
 void	fill_map_plus(t_fillmap *fill, t_info *info)
 {
-	//printf("fill_map_plus IN\n");
 	if (fill->line[fill->i] == '0' || fill->line[fill->i] == '1'
 	|| fill->line[fill->i] == '2' || fill->line[fill->i] == '3'
 	|| fill->line[fill->i] == '4' || fill->line[fill->i] == '5'
-	|| fill->line[fill->i] == '6')
+	|| fill->line[fill->i] == '6' || fill->line[fill->i] == '7')
 		info->map.map[fill->x++][fill->y] = fill->line[fill->i];
 	if (fill->line[fill->i] == '3')
 		tp_destination(fill, info, fill->line, &fill->i);
-	//printf("fill_map_plus OUT\n");
 }
 
-int	fill_map(t_info *info)
+int		fill_map(t_info *info)
 {
-	//printf("fill_map IN\n");
 	t_fillmap	fill;
 	int			ret;
 
@@ -140,5 +131,4 @@ int	fill_map(t_info *info)
 	if (ret == -1)
 		return (-1);
 	return (0);
-	//printf("fill_map OUT\n");
 }

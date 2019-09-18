@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:35:35 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/13 16:27:35 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/18 19:05:55 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,6 @@
 
 void	ray_casting_init(t_info *info, int x)
 {
-	//printf("\nray_casting_init IN\n\n");
 	info->player.x_camera = 2 * x / (double)(info->window.w) - 1;
 	info->ray.x_ray_position = info->player.x_pos;
 	info->ray.y_ray_position = info->player.y_pos;
@@ -37,7 +36,6 @@ void	ray_casting_init(t_info *info, int x)
 	else
 		info->wall.wall_distance = (info->map.y - info->ray.y_ray_position +
 				(1 - info->map.y_step) / 2) / info->ray.y_ray_direction;
-	//printf("\nray_casting_init OUT\n\n");
 }
 
 /*
@@ -46,7 +44,6 @@ void	ray_casting_init(t_info *info, int x)
 
 int		ray_casting(t_info *info)
 {
-	////////printf("ray_casting IN\n");
 	info->wall.x = -1;
 	while (++info->wall.x < info->window.w)
 	{
@@ -128,19 +125,14 @@ int		ray_casting(t_info *info)
 			info->wt[info->w_j].tex_x = info->wt[info->w_j].xhud - info->wt[info->w_j].tex_x - 1;
 		if (info->wall.side == 1 && info->ray.y_ray_direction < 0)
 			info->wt[info->w_j].tex_x = info->wt[info->w_j].xhud - info->wt[info->w_j].tex_x - 1;
-
-		//printf("%f\n",info->wall.x);
-
 		draw_wall(info->wall.x, info->wall.draw_start - 1,
 				info->wall.draw_end, info);
 	}
-	/////////printf("ray_casting OUT\n");
 	return (0);
 }
 
 void	skybox(t_info *info)
 {
-	//printf("skybox IN\n");
 	int		offset;
 	offset = WIDTH;
 	if (info->player.y_dir > 0)
@@ -157,19 +149,16 @@ void	skybox(t_info *info)
 		info->tex.img, offset * info->player.x_dir + (info->tex.xhud * 2) , -150);
 	mlx_put_image_to_window(info->window.mlx, info->window.win,\
 		info->tex.img, offset * info->player.x_dir - (info->tex.xhud * 2) , -150);
-	//printf("skybox OUT\n");
 }
 
 void	game_over(t_info *info)
 {
-	//printf("game_over IN\n");
 	void	*img;
 	int		w;
 	int		h;
 	img = mlx_xpm_file_to_image(info->window.mlx, "gameoverscreen.xpm", &w, &h);
 	mlx_put_image_to_window(info->window.mlx, info->window.win,
 			img, 0, 0);
-	//printf("game_over OUT\n");
 }
 
 /*
@@ -178,8 +167,6 @@ void	game_over(t_info *info)
 
 void	ray_casting_image(t_info *info)
 {
-	
-	//printf("ray_casting_image IN\n");
 	if (!(info->player.life - 1 <= 0))
 	{
 		skybox(info);
@@ -199,7 +186,6 @@ void	ray_casting_image(t_info *info)
 			}
 			mlx_string_put(info->window.mlx, info->window.win, info->window.w / 2,
 				info->window.h / 2, 255, "-1 life");
-			//printf("ray_casting_image OUT1\n");
 		}
 		else
 			info->player.canTrap = 1;
@@ -209,10 +195,8 @@ void	ray_casting_image(t_info *info)
 			info->weapon[info->w_i].img, info->window.w / 2 - 4 + (rand() % 8),\
 			info->window.h - info->weapon[info->w_i].yhud);
 		mlx_destroy_image(info->window.mlx, info->fps.img);
-		//printf("ray_casting_image OUT2\n");
 	}
 	else {
-		//printf("ray_casting_image OUT3\n");
 		game_over(info);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/12 16:02:28 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/18 19:02:59 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,6 +60,17 @@
 # define KEY_8 28
 # define KEY_9 25
 # define KEY_0 29
+
+# define KEY_1_NUM 83
+# define KEY_2_NUM 84
+# define KEY_3_NUM 85
+# define KEY_4_NUM 86
+# define KEY_5_NUM 87
+# define KEY_6_NUM 88
+# define KEY_7_NUM 89
+# define KEY_8_NUM 91
+# define KEY_9_NUM 92
+# define KEY_0_NUM 82
 
 # define MOUSE_ZOOM_IN 5
 # define MOUSE_ZOOM_OUT 4
