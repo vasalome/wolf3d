@@ -16,6 +16,7 @@
 int		main(int argc, char **argv)
 {
 	t_info	info;
+	void	*mlx;
 
 	if (argc != 2)
 	{
@@ -33,7 +34,7 @@ int		main(int argc, char **argv)
 	//printf("AFTER INFO: WHY CRASH _____4\n");
 	mlx_loop_hook(info.window.mlx, move, &info);
 	//printf("AFTER INFO: WHY CRASH _____5\n");
-	if (!(mlx_loop(info.window.mlx)))
-		exit(0);
+	mlx = info.window.mlx;
+	mlx_loop(mlx);
 	return (0);
 }

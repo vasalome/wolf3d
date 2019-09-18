@@ -45,12 +45,12 @@ void	draw_wall(int x, int draw_start, int draw_end, t_info *info)
 		d = draw_start * 256 - info->window.h * 128 + info->wall.line_height * 128;
 		texY = ((d * info->wt[info->w_j].yhud) / info->wall.line_height) / 256;
 		
-		info->fps.data[x * 4 + 4 * WIDTH * draw_start] = (char)info->wt[info->w_j].data[info->wt[info->w_j].tex_x * 4 + 4 * info->wt[info->w_j].xhud * texY];
+		info->fps.data[x * 4 + 4 * WIDTH * draw_start] = (char)info->wt[info->w_j].data[info->wt[info->w_j].tex_x * 4 + 4 * info->wt[info->w_j].xhud * texY] ;
 		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 1] = (char)info->wt[info->w_j].data[info->wt[info->w_j].tex_x * 4 + 4 * info->wt[info->w_j].xhud * texY + 1];
 		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 2] = (char)info->wt[info->w_j].data[info->wt[info->w_j].tex_x * 4 + 4 * info->wt[info->w_j].xhud * texY + 2];
 		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 3] = (char)0;
 	}
-	y = draw_start - 1;
+	y = draw_start - 5;
 
 	while (++y < info->window.h)
 	{

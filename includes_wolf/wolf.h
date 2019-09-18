@@ -21,7 +21,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <sys/stat.h>
-# include <pthread.h>
+# include <time.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -45,7 +45,6 @@ typedef struct		s_setmap
 	int				w;
 	int				tmp;
 	int				tp;
-	int				*tlp;
 }					t_setmap;
 
 typedef struct		s_tex
@@ -92,7 +91,7 @@ typedef struct		s_player
 	int				turn_left;
 	int				move_up;
 	int				move_down;
-	int				*tp;
+	int				tp[9999];
 	int				tp_index;
 	int				life;
 	int				canTrap;
@@ -157,8 +156,7 @@ typedef struct		s_info
 	t_weapon		head[8];
 	t_weapon		img;
 	t_tex			fps;
-	t_tex			wt[2];
-	t_tex			wf;
+	t_tex			wt[5];
 	int				w_i;
 	int				w_j;
 }					t_info;
@@ -174,7 +172,7 @@ int					key_release(int keycode, t_info *info);
 int					set_map_size(t_info *info);
 int					create_map(t_info *info);
 void				create_img(t_info *info);
-void				fill_map(t_info *info);
+int					fill_map(t_info *info);
 
 void				turn_left(t_info *info);
 void				turn_right(t_info *info);

@@ -21,12 +21,14 @@ int		set_map_size(t_info *info)
 {
 	//printf("set_map_size IN");
 	t_setmap	set;
+	int			ret;
 
 	set.line = NULL;
 	set.h = 0;
 	set.w = 0;
-	set.fd = open(info->map.name, O_RDONLY);
-	while (ft_get_next_line(set.fd, &set.line))
+	if (!(set.fd = open(info->map.name, O_RDONLY)))
+		return (-1);
+	while ((ret = ft_get_next_line(set.fd, &set.line)))
 	{
 		set.tmp = ft_countchar(set.line, '1');
 		set.tmp += ft_countchar(set.line, '0');
@@ -38,9 +40,8 @@ int		set_map_size(t_info *info)
 		ft_strdel(&set.line);
 		set.h++;
 	}
-	if (!(set.tlp = malloc(sizeof(int *) * set.tp * 2 + 2)))
+	if (ret == -1)
 		return (-1);
-	info->player.tp = set.tlp;
 	info->map.height = set.h;
 	info->map.width = set.w;
 	//printf("set_map_size OUT\n");
@@ -70,7 +71,9 @@ void	tp_destination(t_fillmap *fill, t_info *info, char *str, int *i)
 {
 	//printf("tp_destination IN\n");
 	int		x;
+	int		ten;
 
+	ten = 1;
 	*i += 1;
 	x = fill->x * 100 + fill->y;
 	info->player.tp[x] = 10;
@@ -81,10 +84,15 @@ void	tp_destination(t_fillmap *fill, t_info *info, char *str, int *i)
 	}
 	fill->j += 1;
 	*i += 1;
-	info->player.tp[x] *= 100;
+	info->player.tp[x] *= 10;
 	while (str[*i] != ' ')
 	{
 		info->player.tp[x] += str[*i] - 48;
+		if (ten)
+		{
+			info->player.tp[x] *= 10;
+			ten = 0;
+		}
 		*i += 1;
 	}
 	fill->j += 1;
@@ -104,18 +112,20 @@ void	fill_map_plus(t_fillmap *fill, t_info *info)
 	//printf("fill_map_plus OUT\n");
 }
 
-void	fill_map(t_info *info)
+int	fill_map(t_info *info)
 {
 	//printf("fill_map IN\n");
 	t_fillmap	fill;
+	int			ret;
 
 	fill.i = 0;
 	fill.x = 0;
 	fill.y = 0;
 	fill.j = 0;
 	fill.line = NULL;
-	fill.fd = open(info->map.name, O_RDONLY);
-	while (ft_get_next_line(fill.fd, &fill.line))
+	if (!(fill.fd = open(info->map.name, O_RDONLY)))
+		return (-1);
+	while ((ret = ft_get_next_line(fill.fd, &fill.line)))
 	{
 		fill.i = 0;
 		while (fill.line[fill.i] != '\0')
@@ -127,5 +137,8 @@ void	fill_map(t_info *info)
 		fill.y++;
 		fill.x = 0;
 	}
+	if (ret == -1)
+		return (-1);
+	return (0);
 	//printf("fill_map OUT\n");
 }

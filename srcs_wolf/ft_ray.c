@@ -58,27 +58,25 @@ int		ray_casting(t_info *info)
 		info->wall.draw_end = info->wall.line_height / 2 + info->window.h / 2;
 		if (info->wall.draw_end >= info->window.h)
 			info->wall.draw_end = info->window.h - 1;
-		if (info->wall.side == 1)
+		if (info->wall.side == 0 && info->ray.x_ray_direction > 0)
 		{
 			info->w_j = 0;
-			info->wall.color = 0x3E2A1A;
-			info->wall.r = 62;
-			info->wall.g = 42;
-			info->wall.b = 26;
-			info->wall.a = 255;
+		}
+		else if (info->wall.side == 0 && info->ray.x_ray_direction < 0)
+		{
+			info->w_j = 1;
+		}
+		else if (info->wall.side == 1 && info->ray.y_ray_direction > 0)
+		{
+			info->w_j = 2;
 		}
 		else
 		{
-			info->w_j = 0;
-			info->wall.color = 0x25190F;
-			info->wall.r = 37;
-			info->wall.g = 25;
-			info->wall.b = 15;
-			info->wall.a = 255;
+			info->w_j = 3;
 		}
 		if (info->wall.trap == 1)
 		{
-			info->w_j = 1;
+			info->w_j = 4;
 			/*if (info->wall.side == 1)
 			{
 				
@@ -99,7 +97,7 @@ int		ray_casting(t_info *info)
 		}
 		if (info->wall.trap == 2)
 		{
-			info->w_j = 1;
+			info->w_j = 4;
 			/*if (info->wall.side == 1)
 			{
 				info->wall.color = 0xB66530;
@@ -180,6 +178,7 @@ void	game_over(t_info *info)
 
 void	ray_casting_image(t_info *info)
 {
+	
 	//printf("ray_casting_image IN\n");
 	if (!(info->player.life - 1 <= 0))
 	{
