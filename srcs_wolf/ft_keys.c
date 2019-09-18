@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:34:41 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/18 18:58:11 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/18 21:47:15 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,9 +32,9 @@ int		key_press(int keycode, t_info *info)
 		info->player.move_speed = 0.2;
 	else if (keycode == 49)
 	{
-		info->weapon[0].img = mlx_xpm_file_to_image(info->window.mlx,\
+		info->weapon[0].img = mlx_xpm_file_to_image(info->win.mlx,\
 			"weapons/pistol/pistol_2_shot.xpm", &info->weapon[0].xhud, &info->weapon[0].yhud);
-		info->weapon[1].img = mlx_xpm_file_to_image(info->window.mlx,\
+		info->weapon[1].img = mlx_xpm_file_to_image(info->win.mlx,\
 			"knife/knife2.xpm", &info->weapon[1].xhud, &info->weapon[1].yhud);
 		ray_casting_image(info);
 	}
@@ -61,9 +61,9 @@ int		key_release(int key, t_info *info)
 		info->player.move_speed = 0.05;
 	else if (key == 49)
 	{
-		info->weapon[0].img = mlx_xpm_file_to_image(info->window.mlx,\
+		info->weapon[0].img = mlx_xpm_file_to_image(info->win.mlx,\
 			"weapons/pistol/pistol_1.xpm", &info->weapon[0].xhud, &info->weapon[0].yhud);
-		info->weapon[1].img = mlx_xpm_file_to_image(info->window.mlx,\
+		info->weapon[1].img = mlx_xpm_file_to_image(info->win.mlx,\
 			"knife/knife1.xpm", &info->weapon[1].xhud, &info->weapon[1].yhud);
 		ray_casting_image(info);
 	}

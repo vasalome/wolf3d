@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/08 18:02:24 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/24 19:24:34 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/18 21:57:30 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -94,16 +94,16 @@ typedef struct		s_player
 	int				tp[9999];
 	int				tp_index;
 	int				life;
-	int				canTrap;
+	int				can_trap;
 }					t_player;
 
-typedef struct		s_window
+typedef struct		s_win
 {
 	int				w;
 	int				h;
 	void			*mlx;
 	void			*win;
-}					t_window;
+}					t_win;
 
 typedef struct		s_map
 {
@@ -149,7 +149,7 @@ typedef struct		s_info
 	t_tex			tex;
 	t_ray			ray;
 	t_player		player;
-	t_window		window;
+	t_win			win;
 	t_map			map;
 	t_wall			wall;
 	t_weapon		weapon[3];

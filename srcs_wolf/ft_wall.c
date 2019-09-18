@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:37:11 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/18 19:05:53 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/18 21:48:10 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,7 @@
 
 void	create_img(t_info *info)
 {
-	info->fps.img = mlx_new_image(info->window.mlx, WIDTH, HEIGHT);
+	info->fps.img = mlx_new_image(info->win.mlx, WIDTH, HEIGHT);
 	info->fps.data = mlx_get_data_addr(info->fps.img, &info->fps.bpp,\
 		&info->fps.sizeline, &info->fps.endian);
 }
@@ -39,7 +39,7 @@ void	draw_wall(int x, int draw_start, int draw_end, t_info *info)
 		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 1] = (char)info->wall.g;
 		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 2] = (char)info->wall.r;
 		info->fps.data[x * 4 + 4 * WIDTH * draw_start + 3] = (char)0;*/
-		d = draw_start * 256 - info->window.h * 128 + info->wall.line_height * 128;
+		d = draw_start * 256 - info->win.h * 128 + info->wall.line_height * 128;
 		texY = ((d * info->wt[info->w_j].yhud) / info->wall.line_height) / 256;
 		
 		info->fps.data[x * 4 + 4 * WIDTH * draw_start] = (char)info->wt[info->w_j].data[info->wt[info->w_j].tex_x * 4 + 4 * info->wt[info->w_j].xhud * texY] ;
@@ -49,7 +49,7 @@ void	draw_wall(int x, int draw_start, int draw_end, t_info *info)
 	}
 	y = draw_start - 5;
 
-	while (++y < info->window.h)
+	while (++y < info->win.h)
 	{
 		info->fps.data[x * 4 + 4 * WIDTH * y] = (char)120;
 		info->fps.data[x * 4 + 4 * WIDTH * y + 1] = (char)120;
