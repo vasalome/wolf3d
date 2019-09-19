@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:34:41 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/19 14:57:58 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/19 17:11:33 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@
 void	press_weapon_2(t_info *info)
 {
 	info->wp[0].img = mlx_xpm_file_to_image(info->win.mlx,\
-	"weapons/xpm/fist_1.xpm", &info->wp[0].xhud, &info->wp[0].yhud);
+		"weapons/xpm/fist_1.xpm", &info->wp[0].xhud, &info->wp[0].yhud);
 	info->wp[1].img = mlx_xpm_file_to_image(info->win.mlx,\
 		"weapons/xpm/p_2-2.xpm", &info->wp[1].xhud, &info->wp[1].yhud);
 	info->wp[2].img = mlx_xpm_file_to_image(info->win.mlx,\
@@ -77,13 +77,16 @@ int		key_press(int keycode, t_info *info)
 		info->player.turn_left = 1;
 	else if (keycode == KEY_SHIFT_L || keycode == KEY_SHIFT_R)
 		info->player.move_speed = 0.2;
-	else if (keycode == 49)
+	else if (keycode == KEY_SPACE)
 	{
 		press_weapon(info);
 		ray_casting_image(info);
 	}
 	else if (keycode == KEY_ESC)
+	{
 		exit(1);
+		mlx_destroy_window(info->win.mlx, info->win.win);
+	}
 	return (0);
 }
 
@@ -122,7 +125,7 @@ int		key_release(int key, t_info *info)
 		info->player.turn_left = 0;
 	else if (key == KEY_SHIFT_L || key == KEY_SHIFT_R)
 		info->player.move_speed = 0.05;
-	else if (key == 49)
+	else if (key == KEY_SPACE)
 	{
 		reset_weapon(info);
 		ray_casting_image(info);

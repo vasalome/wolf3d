@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/09/19 13:56:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/19 14:02:19 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/19 16:32:36 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,7 @@ void	weapons(t_info *info)
 	info->wp[9].img = mlx_xpm_file_to_image(info->win.mlx,\
 		"weapons/xpm/bfg_1.xpm", &info->wp[9].xhud, &info->wp[9].yhud);
 	info->wp[10].img = mlx_xpm_file_to_image(info->win.mlx,\
-		"oof.xpm", &info->wp[10].xhud, &info->wp[10].yhud);
+		"img/oof.xpm", &info->wp[10].xhud, &info->wp[10].yhud);
 	info->wp[7].img = mlx_xpm_file_to_image(info->win.mlx,\
-		"victory.xpm", &info->wp[7].xhud, &info->wp[7].yhud);
+		"img/victory.xpm", &info->wp[7].xhud, &info->wp[7].yhud);
 }

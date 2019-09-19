@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:35:35 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/19 14:55:54 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/19 16:33:45 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ void	game_over(t_info *info)
 	int		y;
 
 	y = 0;
-	img = mlx_xpm_file_to_image(info->win.mlx, "game_over_p.xpm", &w, &h);
+	img = mlx_xpm_file_to_image(info->win.mlx, "img/game_over_p.xpm", &w, &h);
 	while (y < info->win.h)
 	{
 		x = 0;
@@ -48,7 +48,7 @@ void	skybox(t_info *info)
 	offset = WIDTH;
 	if (info->player.y_dir > 0)
 		offset = -offset;
-	info->tex.img = mlx_xpm_file_to_image(info->win.mlx, "sky.xpm",\
+	info->tex.img = mlx_xpm_file_to_image(info->win.mlx, "img/sky.xpm",\
 		&info->tex.xhud, &info->tex.yhud);
 	mlx_put_image_to_window(info->win.mlx, info->win.win,\
 		info->tex.img, offset * info->player.x_dir, -150);
