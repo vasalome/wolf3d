@@ -5,12 +5,12 @@
 ### Description
 
 > You can choose your maps in the "maps" folder.
->
-> List :
->       - maps/mindfuck.map
->       - maps/big_cube.map
->       - maps/lnieto_2.map
->       - maps/vasalome_2.map
+
+List :
+- maps/mindfuck.map
+- maps/big_cube.map
+- maps/lnieto_2.map
+- maps/vasalome_2.map
 
 ## / NOTICE / ->             
 --------------------------
