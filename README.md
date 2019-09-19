@@ -2,20 +2,15 @@
 --------------------------
 > Exemple : ./wolf3d map
 
-<table width="100%">
-<thead>
-<tr>
-<td width="100%" height="60px" align="center" cellpadding="0">
-<strong>Description</strong>
-</td>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td valign="top" height="90px">You can choose your maps in the "maps" folder</td>
-</tr>
-</tbody>
-</table>
+### Description
+
+> You can choose your maps in the "maps" folder.
+>
+> List :
+>       - maps/mindfuck.map
+>       - maps/big_cube.map
+>       - maps/lnieto_2.map
+>       - maps/vasalome_2.map
 
 ## / NOTICE / ->             
 --------------------------
