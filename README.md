@@ -33,12 +33,8 @@
 </thead>
 <tbody>
 <tr>
-<td valign="top" height="30px">Close the program (aka quit/exit)</td>
+<td valign="top" height="30px">Close the program (quit/exit)</td>
 <td valign="top" align="center"><kbd>&nbsp;esc&nbsp;</kbd></td>
-</tr>
-<tr>
-<td valign="top" height="30px">Hold to run faster</td>
-<td valign="top" align="center"><kbd>&nbsp;shift&nbsp;</kbd></td>
 </tr>
 <tr>
 <td valign="top" height="30px">Make a step forward</td>
@@ -57,8 +53,8 @@
 <td valign="top" align="center"><kbd>&nbsp;►&nbsp;</kbd> or <kbd>&nbsp;D&nbsp;</kbd></td>
 </tr>
 <tr>
-<td valign="top" height="30px">Rotate to the right</td>
-<td valign="top" align="center"><kbd>&nbsp;►&nbsp;</kbd> or <kbd>&nbsp;D&nbsp;</kbd></td>
+<td valign="top" height="30px">Hold to run faster</td>
+<td valign="top" align="center"><kbd>&nbsp;shift&nbsp;</kbd></td>
 </tr>
 <tr>
 <td valign="top" height="30px">Shot</td>
