@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:40:07 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/18 18:38:11 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/19 14:04:02 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -83,11 +83,8 @@ void	tp_destination(t_fillmap *fill, t_info *info, char *str, int *i)
 	while (str[*i] != ' ')
 	{
 		info->player.tp[x] += str[*i] - 48;
-		if (ten)
-		{
+		if (ten--)
 			info->player.tp[x] *= 10;
-			ten = 0;
-		}
 		*i += 1;
 	}
 	fill->j += 1;
@@ -98,7 +95,8 @@ void	fill_map_plus(t_fillmap *fill, t_info *info)
 	if (fill->line[fill->i] == '0' || fill->line[fill->i] == '1'
 	|| fill->line[fill->i] == '2' || fill->line[fill->i] == '3'
 	|| fill->line[fill->i] == '4' || fill->line[fill->i] == '5'
-	|| fill->line[fill->i] == '6' || fill->line[fill->i] == '7')
+	|| fill->line[fill->i] == '6' || fill->line[fill->i] == '7'
+	|| fill->line[fill->i] == '8')
 		info->map.map[fill->x++][fill->y] = fill->line[fill->i];
 	if (fill->line[fill->i] == '3')
 		tp_destination(fill, info, fill->line, &fill->i);

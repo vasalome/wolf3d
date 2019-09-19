@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/08 18:02:24 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/18 21:57:30 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/19 14:55:36 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,6 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-
 
 typedef struct		s_fillmap
 {
@@ -142,6 +141,9 @@ typedef struct		s_weapon
 	void			*img;
 	int				xhud;
 	int				yhud;
+	void			*icon;
+	int				iconx;
+	int				icony;
 }					t_weapon;
 
 typedef struct		s_info
@@ -152,42 +154,135 @@ typedef struct		s_info
 	t_win			win;
 	t_map			map;
 	t_wall			wall;
-	t_weapon		weapon[3];
-	t_weapon		head[8];
+	t_weapon		wp[11];
+	t_weapon		head[10];
 	t_weapon		img;
 	t_tex			fps;
-	t_tex			wt[5];
+	t_tex			wt[30];
 	int				w_i;
 	int				w_j;
+	int				shot;
 }					t_info;
 
+/*
+** srcs:			ft_init.c
+*/
+
+void				init(t_info *info);
+void				init_window(t_info *info);
+void				load_textures(t_info *info);
 void				init_map(t_info *info);
 void				init_player(t_info *info);
-void				init_window(t_info *info);
-void				init(t_info *info);
 
-int					key_press(int keycode, t_info *info);
-int					key_release(int keycode, t_info *info);
+/*
+** srcs:			ft_init_hub.c
+*/
 
-int					set_map_size(t_info *info);
-int					create_map(t_info *info);
-void				create_img(t_info *info);
+void				icon(t_info *info);
+void				icon_2(t_info *info);
+void				hub_life(t_info *info);
+
+/*
+** srcs:			ft_init_texture.c
+*/
+
+void				textures_wall_1(t_info *info);
+void				textures_wall_2(t_info *info);
+void				textures_door_1(t_info *info);
+void				textures_door_2(t_info *info);
+
+/*
+** srcs:			ft_init_weapon.c
+*/
+
+void				weapons(t_info *info);
+
+/*
+** srcs:			ft_map.c
+*/
+
 int					fill_map(t_info *info);
+void				fill_map_plus(t_fillmap *fill, t_info *info);
+void				tp_destination(t_fillmap *fill, t_info *info,\
+						char *str, int *i);
+int					create_map(t_info *info);
+int					set_map_size(t_info *info);
 
-void				turn_left(t_info *info);
-void				turn_right(t_info *info);
-int					move(t_info *info);
+/*
+** srcs:			ft_ray.c
+*/
 
-void				ray_casting_init(t_info *info, int x);
-int					ray_casting(t_info *info);
 void				ray_casting_image(t_info *info);
+void				its_a_trap(t_info *info);
+void				hud(t_info *info);
+int					ray_casting(t_info *info);
+void				ray_casting_init(t_info *info, int x);
+
+/*
+** srcs:			ft_wall.c
+*/
+
+void				wall_detection(t_info *info);
+void				wall_detection_plus(t_info *info);
+void				wall_detection_init_x(t_info *info);
+void				wall_detection_init_y(t_info *info);
+void				create_img(t_info *info);
+
+/*
+** srcs:			ft_draw_wall.c
+*/
+
+void				draw_wall(int x, int draw_start, int draw_end,\
+						t_info *info);
+void				draw_wall_plus(int x, int draw_start,\
+						t_info *info, int tex_y);
+
+/*
+** srcs:			ft_spawn.c
+*/
 
 int					get_spawn(t_info *info);
 
-void				draw_wall(int x, int drawstart, int drawend, t_info *info);
-void				wall_detection_init_y(t_info *info);
-void				wall_detection_init_x(t_info *info);
-void				wall_detection(t_info *info);
+/*
+** srcs:			ft_keys.c
+*/
+
+int					key_release(int key, t_info *info);
+void				reset_weapon(t_info *info);
+int					key_press(int keycode, t_info *info);
+void				press_weapon(t_info *info);
+void				press_weapon_2(t_info *info);
+
+/*
+** srcs:			ft_move.c
+*/
+
+int					move(t_info *info);
+void				move_plus1(t_info *info);
+void				move_plus2(t_info *info);
+void				turn_right(t_info *info);
+void				turn_left(t_info *info);
+
+/*
+** srcs:			ft_teleport.c
+*/
+
+void				teleport(t_info *info);
+void				teleport2(t_info *info);
+
+/*
+** srcs:			ft_textures.c
+*/
+
+void				texture_calc(t_info *info);
+void				choose_texture_1(t_info *info);
+void				choose_texture_2(t_info *info);
+void				skybox(t_info *info);
+void				game_over(t_info *info);
+
+/*
+** srcs:			ft_usage.c
+*/
 
 int					red_cross(void);
 int					ft_usage(void);

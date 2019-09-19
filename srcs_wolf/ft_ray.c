@@ -6,16 +6,12 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:35:35 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/18 22:56:16 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/19 14:54:28 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes_wolf/wolf.h"
-
-/*
-** Initiate variables at default values for raycasting
-*/
 
 void	ray_casting_init(t_info *info, int x)
 {
@@ -38,10 +34,6 @@ void	ray_casting_init(t_info *info, int x)
 				(1 - info->map.y_step) / 2) / info->ray.y_ray_direction;
 }
 
-/*
-** Main raycasting function
-*/
-
 int		ray_casting(t_info *info)
 {
 	info->wall.x = -1;
@@ -55,115 +47,43 @@ int		ray_casting(t_info *info)
 		info->wall.draw_end = info->wall.line_height / 2 + info->win.h / 2;
 		if (info->wall.draw_end >= info->win.h)
 			info->wall.draw_end = info->win.h - 1;
-		if (info->wall.side == 0 && info->ray.x_ray_direction > 0)
-		{
-			info->w_j = 0;
-		}
-		else if (info->wall.side == 0 && info->ray.x_ray_direction < 0)
-		{
-			info->w_j = 1;
-		}
-		else if (info->wall.side == 1 && info->ray.y_ray_direction > 0)
-		{
-			info->w_j = 2;
-		}
-		else
-		{
-			info->w_j = 3;
-		}
-		if (info->wall.trap == 1)
-		{
-			info->w_j = 4;
-			/*if (info->wall.side == 1)
-			{
-				
-				info->wall.color = 0xDB2222;
-				info->wall.r = 219;
-				info->wall.g = 34;
-				info->wall.b = 34;
-				info->wall.a = 255;
-			}
-			else
-			{
-				info->wall.color = 0xB61A1A;
-				info->wall.r = 182;
-				info->wall.g = 26;
-				info->wall.b = 26;
-				info->wall.a = 255;
-			}*/
-		}
-		if (info->wall.trap == 2)
-		{
-			info->w_j = 4;
-			/*if (info->wall.side == 1)
-			{
-				info->wall.color = 0xB66530;
-				info->wall.r = 182;
-				info->wall.g = 101;
-				info->wall.b = 48;
-				info->wall.a = 255;
-			}
-			else
-			{
-				info->wall.color = 0x8D4D22;
-				info->wall.r = 141;
-				info->wall.g = 77;
-				info->wall.b = 34;
-				info->wall.a = 255;
-			}*/
-		}
-
-		//Wall textures
-		if (info->wall.side == 0)
-			info->wall.ux = info->player.y_pos + info->wall.wall_distance * info->ray.y_ray_direction;
-		else
-			info->wall.ux = info->player.x_pos + info->wall.wall_distance * info->ray.x_ray_direction;
-		info->wall.ux -= floor((info->wall.ux));
-		info->wt[info->w_j].tex_x = (int)(info->wall.ux * (double)info->wt[info->w_j].xhud);
-
-		if (info->wall.side == 0 && info->ray.x_ray_direction > 0)
-			info->wt[info->w_j].tex_x = info->wt[info->w_j].xhud - info->wt[info->w_j].tex_x - 1;
-		if (info->wall.side == 1 && info->ray.y_ray_direction < 0)
-			info->wt[info->w_j].tex_x = info->wt[info->w_j].xhud - info->wt[info->w_j].tex_x - 1;
+		choose_texture_1(info);
+		texture_calc(info);
 		draw_wall(info->wall.x, info->wall.draw_start - 1,
 				info->wall.draw_end, info);
 	}
 	return (0);
 }
 
-void	skybox(t_info *info)
+void	hud(t_info *info)
 {
-	int		offset;
-	offset = WIDTH;
-	if (info->player.y_dir > 0)
-		offset = -offset;
-	info->tex.img = mlx_xpm_file_to_image(info->win.mlx, "sky.xpm",\
-		&info->tex.xhud, &info->tex.yhud);
 	mlx_put_image_to_window(info->win.mlx, info->win.win,\
-		info->tex.img, offset * info->player.x_dir, -150);
+		info->head[info->player.life - 1].img, 0, 0);
 	mlx_put_image_to_window(info->win.mlx, info->win.win,\
-		info->tex.img, offset * info->player.x_dir - info->tex.xhud, -150);
-	mlx_put_image_to_window(info->win.mlx, info->win.win,\
-		info->tex.img, offset * info->player.x_dir + info->tex.xhud, -150);
-	mlx_put_image_to_window(info->win.mlx, info->win.win,\
-		info->tex.img, offset * info->player.x_dir + (info->tex.xhud * 2) , -150);
-	mlx_put_image_to_window(info->win.mlx, info->win.win,\
-		info->tex.img, offset * info->player.x_dir - (info->tex.xhud * 2) , -150);
+		info->wp[info->w_i].img, info->win.w / 2 - \
+		info->wp[info->w_i].xhud / 2 - 4 + (rand() % 8),\
+		info->win.h - info->wp[info->w_i].yhud);
+	mlx_put_image_to_window(info->win.mlx, info->win.win, \
+	info->wp[info->w_i].icon, 5, 315);
+	mlx_destroy_image(info->win.mlx, info->fps.img);
 }
 
-void	game_over(t_info *info)
+void	its_a_trap(t_info *info)
 {
-	void	*img;
-	int		w;
-	int		h;
-	img = mlx_xpm_file_to_image(info->win.mlx, "game_over_distortion.xpm", &w, &h);
-	mlx_put_image_to_window(info->win.mlx, info->win.win,
-			img, 0, 0);
+	if (info->map.map[(int)info->player.x_pos][(int)info->player.y_pos] == '5')
+	{
+		if (info->player.can_trap)
+		{
+			info->player.can_trap = 0;
+			info->player.life -= 1;
+		}
+		mlx_put_image_to_window(info->win.mlx, info->win.win,\
+		info->wp[10].img, info->win.w / 2 - info->wp[10].xhud / \
+		2, info->win.h / 2 - info->wp[10].yhud / 2);
+	}
+	else
+		info->player.can_trap = 1;
 }
-
-/*
-** put resulting image of raycasting on screen
-*/
 
 void	ray_casting_image(t_info *info)
 {
@@ -172,30 +92,16 @@ void	ray_casting_image(t_info *info)
 		skybox(info);
 		create_img(info);
 		ray_casting(info);
-		mlx_put_image_to_window(info->win.mlx, info->win.win, info->fps.img, 0, 0);
-		if (info->map.map[(int)info->player.x_pos][(int)info->player.y_pos] == '4')
-			mlx_string_put(info->win.mlx, info->win.win, info->win.w / 2,
-				info->win.h / 2, 255, "GG BRO!");
-		if (info->map.map[(int)info->player.x_pos][(int)info->player.y_pos] == '5')
-		{
-			if (info->player.can_trap)
-			{
-				info->player.can_trap = 0;
-				info->player.life -= 1;
-			}
-			mlx_string_put(info->win.mlx, info->win.win, info->win.w / 2,
-				info->win.h / 2, 255, "-1 life");
-		}
-		else
-			info->player.can_trap = 1;
-		mlx_put_image_to_window(info->win.mlx, info->win.win,\
-			info->head[info->player.life - 1].img, 0, 0);
-		mlx_put_image_to_window(info->win.mlx, info->win.win,\
-			info->weapon[info->w_i].img, info->win.w / 2 - 4 + (rand() % 8),\
-			info->win.h - info->weapon[info->w_i].yhud);
-		mlx_destroy_image(info->win.mlx, info->fps.img);
+		mlx_put_image_to_window(info->win.mlx, info->win.win, \
+		info->fps.img, 0, 0);
+		if (info->map.map[(int)info->player.x_pos]\
+		[(int)info->player.y_pos] == '4')
+			mlx_put_image_to_window(info->win.mlx, info->win.win,\
+			info->wp[7].img, info->win.w / 2 - info->wp[7].xhud / 2, \
+			info->win.h / 2 - info->wp[7].yhud / 2);
+		its_a_trap(info);
+		hud(info);
 	}
-	else {
+	else
 		game_over(info);
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:33:41 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/13 16:27:33 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/19 14:39:56 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,62 +60,46 @@ void	turn_right(t_info *info)
 	turn_left(info);
 }
 
-void	move_plus1(t_info *info)
-{
-	int		x;
-	int		y;
-	int		tpx;
-
-	if (info->map.map[(int)(info->player.x_pos + info->player.x_dir
-				* info->player.move_speed)][(int)(info->player.y_pos)] != '1')
-		info->player.x_pos += info->player.x_dir * info->player.move_speed;
-	if (info->map.map[(int)(info->player.x_pos)][(int)(info->player.y_pos
-				+ info->player.y_dir * info->player.move_speed)] != '1')
-		info->player.y_pos += info->player.y_dir * info->player.move_speed;
-	if (info->map.map[(int)(info->player.x_pos + info->player.x_dir
-				* info->player.move_speed)][(int)(info->player.y_pos)] == '3')
-	{
-		info->player.x_pos += info->player.x_dir * info->player.move_speed;
-		tpx = (int)(info->player.x_pos + 1) * 100 + (int)info->player.y_pos;
-		x = (int)((info->player.tp[tpx] / 100) - 10);
-		y = (int)(info->player.tp[tpx] % 100);
-		if (!(x > info->map.width || y > info->map.height || y < 0 || x < 0))
-		{
-			info->player.x_pos = x + (info->player.x_pos -\
-				(int)info->player.x_pos);
-			info->player.y_pos = y + (info->player.y_pos -\
-				(int)info->player.y_pos);
-		}
-	}
-}
-
 void	move_plus2(t_info *info)
 {
-	int		x;
-	int		y;
-	int		tpx;
-
 	if (info->map.map[(int)(info->player.x_pos - info->player.x_dir
-			* info->player.move_speed)][(int)(info->player.y_pos)] != '1')
+		* info->player.move_speed)][(int)(info->player.y_pos)] != '1'\
+		&& info->map.map[(int)(info->player.x_pos - info->player.x_dir\
+		* info->player.move_speed)][(int)(info->player.y_pos)] != '7'\
+		&& info->map.map[(int)(info->player.x_pos - info->player.x_dir\
+		* info->player.move_speed)][(int)(info->player.y_pos)] != '8')
 		info->player.x_pos -= info->player.x_dir * info->player.move_speed;
 	if (info->map.map[(int)(info->player.x_pos)][(int)(info->player.y_pos
-			- info->player.y_dir * info->player.move_speed)] != '1')
+		- info->player.y_dir * info->player.move_speed)] != '1'\
+		&& info->map.map[(int)(info->player.x_pos)][(int)(info->player.y_pos\
+		- info->player.y_dir * info->player.move_speed)] != '7'\
+		&& info->map.map[(int)(info->player.x_pos)][(int)(info->player.y_pos\
+		- info->player.y_dir * info->player.move_speed)] != '8')
 		info->player.y_pos -= info->player.y_dir * info->player.move_speed;
-	if (info->map.map[(int)(info->player.x_pos - info->player.x_dir
-			* info->player.move_speed)][(int)(info->player.y_pos)] == '3')
-	{
-		info->player.x_pos -= info->player.x_dir * info->player.move_speed;
-		tpx = (int)(info->player.x_pos + 1) * 100 + (int)info->player.y_pos;
-		x = (int)((info->player.tp[tpx] / 100) - 10);
-		y = (int)(info->player.tp[tpx] % 100);
-		if (!(x > info->map.width || y > info->map.height || y < 0 || x < 0))
-		{
-			info->player.x_pos = x + (info->player.x_pos -\
-				(int)info->player.x_pos);
-			info->player.y_pos = y + (info->player.y_pos -\
-				(int)info->player.y_pos);
-		}
-	}
+	if (info->map.map[(int)(info->player.x_pos - info->player.x_dir\
+		* info->player.move_speed)][(int)(info->player.y_pos)] == '3')
+		teleport2(info);
+}
+
+void	move_plus1(t_info *info)
+{
+	if (info->map.map[(int)(info->player.x_pos + info->player.x_dir
+		* info->player.move_speed)][(int)(info->player.y_pos)] != '1'\
+		&& info->map.map[(int)(info->player.x_pos + info->player.x_dir\
+		* info->player.move_speed)][(int)(info->player.y_pos)] != '7'\
+		&& info->map.map[(int)(info->player.x_pos + info->player.x_dir\
+		* info->player.move_speed)][(int)(info->player.y_pos)] != '8')
+		info->player.x_pos += info->player.x_dir * info->player.move_speed;
+	if (info->map.map[(int)(info->player.x_pos)][(int)(info->player.y_pos
+		+ info->player.y_dir * info->player.move_speed)] != '1'\
+		&& info->map.map[(int)(info->player.x_pos)][(int)(info->player.y_pos\
+		+ info->player.y_dir * info->player.move_speed)] != '7'\
+		&& info->map.map[(int)(info->player.x_pos)][(int)(info->player.y_pos\
+		+ info->player.y_dir * info->player.move_speed)] != '8')
+		info->player.y_pos += info->player.y_dir * info->player.move_speed;
+	if (info->map.map[(int)(info->player.x_pos + info->player.x_dir
+		* info->player.move_speed)][(int)(info->player.y_pos)] == '3')
+		teleport(info);
 }
 
 int		move(t_info *info)
