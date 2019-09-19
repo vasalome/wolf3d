@@ -1,44 +1,111 @@
-#How to use ?              
+# How to use ?              
 --------------------------
->Exemple : ./wolf3d map
+> Exemple : ./wolf3d map
 
-- 1 : Select your map
-- 2 : Escape from the AI
-- 3 : Don't die !
+<table width="100%">
+<thead>
+<tr>
+<td width="100%" height="60px" align="center" cellpadding="0">
+<strong>Description</strong>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top" height="90px">You can choose your maps in the "maps" folder</td>
+</tr>
+</tbody>
+</table>
 
-#/ NOTICE / ->             
+## / NOTICE / ->             
 --------------------------
-Mouvements :              
-- WASD / Use Arrows
-- SHIFT : Run
 
-Autres :                  
-- ESC : Quit               
+<table width="100%">
+<thead>
+<tr>
+<td width="65%" height="60px" align="center" cellpadding="0">
+<strong>Description</strong>
+</td>
+<td width="10%" align="center" cellpadding="0">
+<span style="width:70px">&nbsp;</span><strong>Key(s)</strong><span style="width:50px">&nbsp;</span>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top" height="30px">Close the program (aka quit/exit)</td>
+<td valign="top" align="center"><kbd>&nbsp;esc&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Hold to run faster</td>
+<td valign="top" align="center"><kbd>&nbsp;shift&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Make a step forward</td>
+<td valign="top" align="center"><kbd>&nbsp;▲&nbsp;</kbd> or <kbd>&nbsp;W&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Make a step backward</td>
+<td valign="top" align="center"><kbd>&nbsp;▼&nbsp;</kbd> or <kbd>&nbsp;S&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Rotate to the left</td>
+<td valign="top" align="center"><kbd>&nbsp;◄&nbsp;</kbd> or <kbd>&nbsp;A&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Rotate to the right</td>
+<td valign="top" align="center"><kbd>&nbsp;►&nbsp;</kbd> or <kbd>&nbsp;D&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Rotate to the right</td>
+<td valign="top" align="center"><kbd>&nbsp;►&nbsp;</kbd> or <kbd>&nbsp;D&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Shot</td>
+<td valign="top" align="center"><kbd>&nbsp;SPACE&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Weapon: Fist</td>
+<td valign="top" align="center"><kbd>&nbsp;1 NUM&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Weapon: Pistol</td>
+<td valign="top" align="center"><kbd>&nbsp;2 NUM&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Weapon: Chainsaw</td>
+<td valign="top" align="center"><kbd>&nbsp;3 NUM&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Weapon: Shotgun</td>
+<td valign="top" align="center"><kbd>&nbsp;4 NUM&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Weapon: Super Shotgun</td>
+<td valign="top" align="center"><kbd>&nbsp;5 NUM&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Weapon: Chaingun</td>
+<td valign="top" align="center"><kbd>&nbsp;6 NUM&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Weapon: Plasma Gun</td>
+<td valign="top" align="center"><kbd>&nbsp;7 NUM&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Weapon: Rocket Launcher</td>
+<td valign="top" align="center"><kbd>&nbsp;8 NUM&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Weapon: Big Fucking Gun 9000</td>
+<td valign="top" align="center"><kbd>&nbsp;9 NUM&nbsp;</kbd></td>
+</tr>
+</tbody>
+</table>
 
 
 https://www.freefileconvert.com/png-xpm
 
 
-List :
-- Map à faire :
-    > vasalome_2 : finir
-    > ai_lab : créé
-- Textures :
-    > Mur 
-    > - face_a = "tete d'hitler" [light] FAIT
-    > - face_b = "tete lnieto" [mid-light] FAIT
-    > - face_c = "croix gamme IA" [dark] FAIT
-    > - face_d = "tete vasalome" [mid-light] FAIT
-    >
-    > Porte
-    > - face_a = "porte" [light] FAIT
-    > - face_b = "porte" [mid-light] FAIT
-    > - face_c = "porte" [dark] FAIT
-    > - face_d = "porte" [mid-light] FAIT
-    >
-    > Piege
-    > Weapons : https://www.spriters-resource.com/fullview/4111/
-- 10 images : vie (100% - 90 % - 80 etc..) FAIT
-- Game over screen
-
-https://prod.liveshare.vsengsaas.visualstudio.com/join?2A9EE92D7D751DC9FFF3726A12C524450203
+## DERNIER POINT ?
+- Gestion argument : envoie d'un fichier invalide
