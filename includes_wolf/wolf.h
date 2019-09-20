@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/08 18:02:24 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/19 18:18:04 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/20 15:37:47 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -258,8 +258,8 @@ void				press_weapon_2(t_info *info);
 */
 
 int					move(t_info *info);
-void				move_plus1(t_info *info);
-void				move_plus2(t_info *info);
+void				move_plus_1(t_info *info);
+void				move_plus_2(t_info *info);
 void				turn_right(t_info *info);
 void				turn_left(t_info *info);
 
@@ -268,7 +268,7 @@ void				turn_left(t_info *info);
 */
 
 void				teleport(t_info *info);
-void				teleport2(t_info *info);
+void				teleport_2(t_info *info);
 
 /*
 ** srcs:			ft_textures.c
@@ -285,6 +285,7 @@ void				game_over(t_info *info);
 */
 
 int					red_cross(void);
+int					check_map(t_info *info);
 int					ft_usage(void);
 
 #endif
