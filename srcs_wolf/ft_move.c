@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:33:41 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/19 14:39:56 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/20 13:36:49 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,7 +60,7 @@ void	turn_right(t_info *info)
 	turn_left(info);
 }
 
-void	move_plus2(t_info *info)
+void	move_plus_2(t_info *info)
 {
 	if (info->map.map[(int)(info->player.x_pos - info->player.x_dir
 		* info->player.move_speed)][(int)(info->player.y_pos)] != '1'\
@@ -78,10 +78,10 @@ void	move_plus2(t_info *info)
 		info->player.y_pos -= info->player.y_dir * info->player.move_speed;
 	if (info->map.map[(int)(info->player.x_pos - info->player.x_dir\
 		* info->player.move_speed)][(int)(info->player.y_pos)] == '3')
-		teleport2(info);
+		teleport_2(info);
 }
 
-void	move_plus1(t_info *info)
+void	move_plus_1(t_info *info)
 {
 	if (info->map.map[(int)(info->player.x_pos + info->player.x_dir
 		* info->player.move_speed)][(int)(info->player.y_pos)] != '1'\
@@ -105,9 +105,9 @@ void	move_plus1(t_info *info)
 int		move(t_info *info)
 {
 	if (info->player.move_up == 1)
-		move_plus1(info);
+		move_plus_1(info);
 	if (info->player.move_down == 1)
-		move_plus2(info);
+		move_plus_2(info);
 	turn_right(info);
 	if ((info->player.move_up || info->player.move_down ||
 				info->player.turn_right || info->player.turn_left) == 1)
