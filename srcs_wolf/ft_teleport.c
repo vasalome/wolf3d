@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/09/19 14:37:15 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/23 19:13:40 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/23 19:16:06 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,8 +32,10 @@ void	teleport_2(t_info *info)
 	printf("__x_dir: %f\n", info->player.x_dir);
 	printf("__y_dir: %f\n\n\033[0;0m", info->player.y_dir);
 
+////////// LE PROBLEME VIENT (PROBABLEMENT) DE CE CALCUL ou du tpx
 	x = (int)((info->player.tp[tpx] / 100) - 10);
 	y = (int)(info->player.tp[tpx] % 100);
+//////////
 
 	printf("\033[0;31mA\nx:%d\ny:%d\ntpx:%d\n\033[0;0m\n\n",x, y, tpx);
 	if (!(x > info->map.width || y > info->map.height || y < 0 || x < 0))
