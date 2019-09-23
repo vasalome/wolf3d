@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/08 18:02:24 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 15:37:47 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/23 18:43:13 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,8 +23,8 @@
 # include <sys/stat.h>
 # include <time.h>
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1280//640//1920
+# define HEIGHT 720//360//1080
 
 typedef struct		s_fillmap
 {

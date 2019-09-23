@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/24 19:19:21 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/20 15:38:06 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/23 18:37:34 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,6 +34,8 @@ int		check_map(t_info *info)
 	if (!(ft_strcmp(info->map.name, "maps/test_texture.map")))
 		return (0);
 	if (!(ft_strcmp(info->map.name, "maps/test_tp.map")))
+		return (0);
+	if (!(ft_strcmp(info->map.name, "maps/big_test_tp.map")))
 		return (0);
 	return (64);
 }
