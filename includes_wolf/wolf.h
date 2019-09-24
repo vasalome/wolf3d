@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/08 18:02:24 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/24 15:04:12 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/24 18:42:48 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -288,7 +288,7 @@ void				game_over(t_info *info);
 */
 
 int					red_cross(void);
-int					check_map(t_info *info);
+int					f_exist(t_info *info);
 int					ft_usage(void);
 
 #endif

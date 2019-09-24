@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/24 19:19:21 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/23 18:37:34 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/24 18:42:46 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,25 +19,14 @@ int		red_cross(void)
 	return (0);
 }
 
-int		check_map(t_info *info)
+int		f_exist(t_info *info)
 {
-	if (!(ft_strcmp(info->map.name, "maps/mindfuck.map")))
+	struct stat	buffer;
+
+	if (stat(info->map.name, &buffer) == 0)
+		return (S_ISREG(buffer.st_mode));
+	else
 		return (0);
-	if (!(ft_strcmp(info->map.name, "maps/big_cube.map")))
-		return (0);
-	if (!(ft_strcmp(info->map.name, "maps/lnieto_1.map")))
-		return (0);
-	if (!(ft_strcmp(info->map.name, "maps/lnieto_2.map")))
-		return (0);
-	if (!(ft_strcmp(info->map.name, "maps/prison_escape.map")))
-		return (0);
-	if (!(ft_strcmp(info->map.name, "maps/test_texture.map")))
-		return (0);
-	if (!(ft_strcmp(info->map.name, "maps/test_tp.map")))
-		return (0);
-	if (!(ft_strcmp(info->map.name, "maps/big_test_tp.map")))
-		return (0);
-	return (64);
 }
 
 int		ft_usage(void)
@@ -54,5 +43,6 @@ int		ft_usage(void)
 	write(1, ". 4 : maps/prison_escape.map   \n", 32);
 	write(1, ".etc                           \n", 32);
 	write(1, "\n", 1);
+	exit(0);
 	return (64);
 }
