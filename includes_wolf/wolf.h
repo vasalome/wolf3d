@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/08 18:02:24 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/23 18:43:13 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/24 15:04:12 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,8 +23,8 @@
 # include <sys/stat.h>
 # include <time.h>
 
-# define WIDTH 1280//640//1920
-# define HEIGHT 720//360//1080
+# define WIDTH 1600
+# define HEIGHT 900
 
 typedef struct		s_fillmap
 {
@@ -162,6 +162,7 @@ typedef struct		s_info
 	int				w_i;
 	int				w_j;
 	int				shot;
+	int				ten;
 }					t_info;
 
 /*
@@ -203,8 +204,6 @@ void				weapons(t_info *info);
 
 int					fill_map(t_info *info);
 void				fill_map_plus(t_fillmap *fill, t_info *info);
-void				tp_destination(t_fillmap *fill, t_info *info,\
-						char *str, int *i);
 int					create_map(t_info *info);
 int					set_map_size(t_info *info);
 
@@ -267,6 +266,10 @@ void				turn_left(t_info *info);
 ** srcs:			ft_teleport.c
 */
 
+void				tp_destination(t_fillmap *fill, t_info *info,\
+						char *str, int *i);
+void				tp_destination_2(t_info *info, char *str,\
+						int *i, int x);
 void				teleport(t_info *info);
 void				teleport_2(t_info *info);
 

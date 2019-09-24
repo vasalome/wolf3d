@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:40:07 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/19 19:11:45 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/24 15:04:15 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,33 +61,6 @@ int		create_map(t_info *info)
 	}
 	info->map.map = map;
 	return (0);
-}
-
-void	tp_destination(t_fillmap *fill, t_info *info, char *str, int *i)
-{
-	int		x;
-	int		ten;
-
-	ten = 1;
-	*i += 1;
-	x = fill->x * 100 + fill->y;
-	info->player.tp[x] = 10;
-	while (str[*i] != ',')
-	{
-		info->player.tp[x] += str[*i] - 48;
-		*i += 1;
-	}
-	fill->j += 1;
-	*i += 1;
-	info->player.tp[x] *= 10;
-	while (str[*i] != ' ')
-	{
-		info->player.tp[x] += str[*i] - 48;
-		if (ten--)
-			info->player.tp[x] *= 10;
-		*i += 1;
-	}
-	fill->j += 1;
 }
 
 void	fill_map_plus(t_fillmap *fill, t_info *info)
