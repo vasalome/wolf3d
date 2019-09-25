@@ -17,10 +17,10 @@ void	skybox(t_info *info)
 {
 	int		offset;
 
-	offset = WIDTH;
+	offset = 640;
 	if (info->player.y_dir > 0)
 		offset = -offset;
-	info->tex.img = mlx_xpm_file_to_image(info->win.mlx, "img/sky.xpm",\
+	info->tex.img = mlx_xpm_file_to_image(info->win.mlx, "img/square.xpm",\
 		&info->tex.xhud, &info->tex.yhud);
 	mlx_put_image_to_window(info->win.mlx, info->win.win,\
 		info->tex.img, offset * info->player.x_dir, -150);
@@ -34,6 +34,12 @@ void	skybox(t_info *info)
 	mlx_put_image_to_window(info->win.mlx, info->win.win,\
 		info->tex.img, offset * info->player.x_dir - \
 		(info->tex.xhud * 2), -150);
+	mlx_put_image_to_window(info->win.mlx, info->win.win,\
+		info->tex.img, offset * info->player.x_dir + \
+		(info->tex.xhud * 3), -150);
+	mlx_put_image_to_window(info->win.mlx, info->win.win,\
+		info->tex.img, offset * info->player.x_dir - \
+		(info->tex.xhud * 3), -150);
 }
 
 void	choose_texture_2(t_info *info)
