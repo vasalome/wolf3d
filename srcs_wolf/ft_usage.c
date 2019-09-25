@@ -19,32 +19,22 @@ int		red_cross(void)
 	return (0);
 }
 
-int		f_exist(t_info *info)
-{
-	struct stat	buffer;
-
-	if (stat(info->map.name, &buffer) == 0)
-		return (S_ISREG(buffer.st_mode));
-	else
-		return (0);
-}
-
 int		ft_usage(char *error)
 {
-	write(1, "\033[32mError: \033[0m", 12);
+	write(1, "\033[32mErreur: \033[0m", 13);
 	ft_putstr(error);
 	write(1, "\n", 1);
-	write(1, "\033[31mHow to use ?                   \n", 32);
+	write(1, "\033[31mComment l'utiliser ?   \n", 30);
 	write(1, "\n", 1);
 	write(1, "Exemple : ./wolf3d 'map'       \n", 32);
 	write(1, "\n\n", 2);
-	write(1, "Choose your map                \n", 32);
+	write(1, "Choisis ta carte               \n", 32);
 	write(1, ". 1 : maps/mindfuck.map        \n", 32);
 	write(1, ". 2 : maps/big_cube.map        \n", 32);
 	write(1, ". 3 : maps/lnieto_2.map        \n", 32);
 	write(1, ". 4 : maps/prison_escape.map   \n", 32);
-	write(1, ".etc\033[0m                           \n", 32);
-	write(1, "\n", 1);
+	write(1, ".etc, ou crée ta propre carte  \n", 35);
+	write(1, "\033[0m\n", 5);
 	exit(0);
 	return (64);
 }

@@ -36,7 +36,7 @@ int		set_map_size(t_info *info)
 	set.w = 0;
 	if (!(set.fd = open(info->map.name, O_RDONLY)))
 		return (-1);
-	while ((ret = ft_get_next_line(set.fd, &set.line)))
+	while ((ret = ft_get_next_line(set.fd, &set.line)) > 0)
 	{
 		count_width(&set);
 		set.tp = ft_countchar(set.line, '3');

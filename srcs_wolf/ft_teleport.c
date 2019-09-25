@@ -15,13 +15,13 @@
 
 void	tp_destination_2(t_info *info, char *str, int *i, int x)
 {
-	if (str[*i + 1] != ' ')
+	if (str[*i + 1] != ' ' && str[*i + 1] != '\0')
 		info->player.tp[x] *= 10;
 	else
 	{
-		info->player.tp[x] -= str[*i] - 48 + 1;
+		info->player.tp[x] -= str[*i] - 48;
 		info->player.tp[x] *= 10;
-		info->player.tp[x] += str[*i] - 48 + 1;
+		info->player.tp[x] += str[*i] - 48;
 	}
 }
 
@@ -33,24 +33,25 @@ void	tp_destination(t_fillmap *fill, t_info *info, char *str, int *i)
 	*i += 1;
 	x = fill->x * 100 + fill->y;
 	info->player.tp[x] = 0;
-	while (str[*i] != ',')
+	while (str[*i] != ',' && (str[*i] >= '0' && str[*i] <= '9'))
 	{
-		info->player.tp[x] += str[*i] - 48 + 1;
+		info->player.tp[x] += str[*i] - 48;
 		if (str[*i + 1] != ',')
 			info->player.tp[x] *= 10;
 		*i += 1;
 	}
-	fill->j += 1;
 	*i += 1;
-	info->player.tp[x] *= 10;
-	while (str[*i] != ' ')
+	info->player.tp[x] = (info->player.tp[x] + 1) * 10;
+	while (str[*i] != ' ' && str[*i] != '\0' && (str[*i] >= '0'\
+		&& str[*i] <= '9'))
 	{
-		info->player.tp[x] += str[*i] - 48 + 1;
+		info->player.tp[x] += str[*i] - 48;
 		if (info->ten--)
 			tp_destination_2(info, str, i, x);
 		*i += 1;
 	}
-	fill->j += 1;
+	info->player.tp[x]++;
+	fill->j += 2;
 }
 
 void	teleport_2(t_info *info)

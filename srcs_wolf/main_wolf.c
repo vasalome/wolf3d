@@ -21,8 +21,6 @@ int		main(int argc, char **argv)
 	if (argc != 2)
 		ft_usage("Mauvais nombre d'arguments !");
 	info.map.name = argv[1];
-	if (f_exist(&info) == 0)
-		ft_usage("Ce fichier n'existe pas !");
 	init(&info);
 	mlx_hook(info.win.win, 17, 0, red_cross, (void *)0);
 	mlx_hook(info.win.win, 2, (1L << 0), key_press, &info);
