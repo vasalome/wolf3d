@@ -4,13 +4,17 @@
 
 ### Description
 
-> You can choose your maps in the "maps" folder.
+> You can choose your maps in the "maps" folder :
 
 List :
 - maps/mindfuck.map
 - maps/big_cube.map
-- maps/lnieto_2.map
-- maps/vasalome_2.map
+- maps/lnieto_1.map
+- maps/prison_escape.map
+- maps/test_texture.map
+- maps/test_tp.map
+
+> or create your own map.
 
 ## / NOTICE / ->             
 --------------------------
@@ -93,12 +97,3 @@ List :
 </tr>
 </tbody>
 </table>
-
-
-https://www.freefileconvert.com/png-xpm
-
-
-## DERNIER POINT ?
-- Gestion argument : envoie d'un fichier invalide
-
-https://prod.liveshare.vsengsaas.visualstudio.com/join?BC936E96C5B0D3019F9474274F9F22036739
