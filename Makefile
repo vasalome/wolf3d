@@ -6,7 +6,7 @@
 #    By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/26 17:27:09 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/25 11:13:57 by vasalome    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/09/25 11:19:56 by vasalome    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -99,10 +99,10 @@ make_libft:
 
 make_mlx:
 	@echo "$(_ORANGE)$(UNDERLINE)MLX:$(R_UNDERLINE)$(_STOP)		$(BOLD)LIB IN PROGRESS..$(_STOP)\n"
-	@make re -C minilibx_macos/
+	@make -C minilibx_macos/
 	@echo "\n"
 
-$(NAME): $(OBJ) $(INC_DIR) make_libft #make_mlx
+$(NAME): $(OBJ) $(INC_DIR) make_libft make_mlx
 	@echo "$(_ORANGE)$(UNDERLINE)WOLF3D:$(R_UNDERLINE)$(_STOP)		$(BOLD)COMPILATION $(NAME): IN PROGRESS..$(_STOP)\n"
 	@$(CC) $(CFLAGS) $(OBJ) -I ./minilibx_macos/mlx.h ./minilibx_macos/libmlx.a ./libft/libft.a -framework OpenGL -framework AppKit -I ./libft/includes $(INC) -o $(NAME)
 	@echo "$(_ORANGE)| ->		$(NAME):" "$(_STOP)|\033[42m     $(BOLD)L O A D I N G$(R_BOLD)     $(_STOP)|" #| pv -qL 15
@@ -121,7 +121,7 @@ clean:
 	@echo "$(_ORANGE)$(UNDERLINE)WOLF3D:$(R_UNDERLINE)$(_STOP)		$(BOLD)CLEAN: IN PROGRESS..$(_STOP)\n		DELETING OBJECTS || ->\n"
 	@$(RM_DIR) $(OBJ_DIR)
 	@$(MAKE) clean -C libft/
-#	@$(MAKE) clean -C minilibx_macos/%.o
+	@$(MAKE) clean -C minilibx_macos/
 	@echo "$(_ORANGE)| ->		CLEAN: DONE\n$(_STOP)"
 
 fclean: clean
@@ -137,6 +137,6 @@ re:
 bin: re clean
 
 
-#.SILENT: make_mlx
+.SILENT: make_mlx
 #.PRECIOUS:
 .PHONY: all clean fclean re bin make_libft

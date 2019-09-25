@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/24 19:19:21 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/25 11:01:44 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/25 11:25:31 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,7 +31,7 @@ int		f_exist(t_info *info)
 
 int		ft_usage(char *error)
 {
-	write(1, "Error: ", 7);
+	write(1, "\033[32mError: \033[0m", 12);
 	ft_putstr(error);
 	write(1, "\n", 1);
 	write(1, "\033[31mHow to use ?                   \n", 32);

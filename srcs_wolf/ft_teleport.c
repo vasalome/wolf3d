@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/09/19 14:37:15 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/24 15:04:10 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/25 11:38:49 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,9 +19,9 @@ void	tp_destination_2(t_info *info, char *str, int *i, int x)
 		info->player.tp[x] *= 10;
 	else
 	{
-		info->player.tp[x] -= str[*i] - 48;
+		info->player.tp[x] -= str[*i] - 48 + 1;
 		info->player.tp[x] *= 10;
-		info->player.tp[x] += str[*i] - 48;
+		info->player.tp[x] += str[*i] - 48 + 1;
 	}
 }
 
@@ -35,7 +35,7 @@ void	tp_destination(t_fillmap *fill, t_info *info, char *str, int *i)
 	info->player.tp[x] = 0;
 	while (str[*i] != ',')
 	{
-		info->player.tp[x] += str[*i] - 48;
+		info->player.tp[x] += str[*i] - 48 + 1;
 		if (str[*i + 1] != ',')
 			info->player.tp[x] *= 10;
 		*i += 1;
@@ -45,7 +45,7 @@ void	tp_destination(t_fillmap *fill, t_info *info, char *str, int *i)
 	info->player.tp[x] *= 10;
 	while (str[*i] != ' ')
 	{
-		info->player.tp[x] += str[*i] - 48;
+		info->player.tp[x] += str[*i] - 48 + 1;
 		if (info->ten--)
 			tp_destination_2(info, str, i, x);
 		*i += 1;
