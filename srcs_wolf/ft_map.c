@@ -13,10 +13,6 @@
 
 #include "../includes_wolf/wolf.h"
 
-/*
-** Do the map !
-*/
-
 int		set_map_size(t_info *info)
 {
 	t_setmap	set;

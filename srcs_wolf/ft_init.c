@@ -39,16 +39,10 @@ void	init_player(t_info *info)
 void	init_map(t_info *info)
 {
 	if (set_map_size(info) == -1)
-	{
 		ft_usage();
-		exit(0);
-	}
 	create_map(info);
 	if (fill_map(info) == -1)
-	{
 		ft_usage();
-		exit(0);
-	}
 	get_spawn(info);
 }
 
@@ -59,8 +53,8 @@ void	load_textures(t_info *info)
 	weapons(info);
 	hub_life(info);
 	textures_wall_1(info);
-	textures_door_1(info);
 	textures_wall_2(info);
+	textures_door_1(info);
 	textures_door_2(info);
 }
 
