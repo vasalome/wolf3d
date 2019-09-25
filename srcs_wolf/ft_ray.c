@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:35:35 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/24 14:00:55 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/25 10:44:15 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,6 +76,7 @@ void	its_a_trap(t_info *info)
 		{
 			info->player.can_trap = 0;
 			info->player.life -= 1;
+			flash(info);
 		}
 		mlx_put_image_to_window(info->win.mlx, info->win.win,\
 		info->wp[10].img, info->win.w / 2 - info->wp[10].xhud /\

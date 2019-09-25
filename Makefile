@@ -6,7 +6,7 @@
 #    By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/26 17:27:09 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/19 14:38:30 by vasalome    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/09/25 11:13:57 by vasalome    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -34,6 +34,7 @@ SRCS		+=	ft_init.c
 SRCS		+=	ft_init_hub.c
 SRCS		+=	ft_init_weapon.c
 SRCS		+=	ft_init_texture.c
+SRCS		+=	ft_fill_map.c
 SRCS		+=	ft_map.c
 SRCS		+=	ft_keys.c
 SRCS		+=	ft_move.c
@@ -43,6 +44,7 @@ SRCS		+=	ft_wall.c
 SRCS		+=	ft_draw_wall.c
 SRCS		+=	ft_spawn.c
 SRCS		+=	ft_textures.c
+SRCS		+=	ft_gameover.c
 SRCS		+=	ft_usage.c
 
 #	Objects:
@@ -119,6 +121,7 @@ clean:
 	@echo "$(_ORANGE)$(UNDERLINE)WOLF3D:$(R_UNDERLINE)$(_STOP)		$(BOLD)CLEAN: IN PROGRESS..$(_STOP)\n		DELETING OBJECTS || ->\n"
 	@$(RM_DIR) $(OBJ_DIR)
 	@$(MAKE) clean -C libft/
+#	@$(MAKE) clean -C minilibx_macos/%.o
 	@echo "$(_ORANGE)| ->		CLEAN: DONE\n$(_STOP)"
 
 fclean: clean

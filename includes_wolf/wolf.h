@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/08 18:02:24 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/24 18:42:48 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/25 11:06:13 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -158,6 +158,7 @@ typedef struct		s_info
 	t_weapon		head[10];
 	t_weapon		img;
 	t_tex			fps;
+	t_tex			flash;
 	t_tex			wt[30];
 	int				w_i;
 	int				w_j;
@@ -199,13 +200,20 @@ void				textures_door_2(t_info *info);
 void				weapons(t_info *info);
 
 /*
-** srcs:			ft_map.c
+** srcs:			ft_fill_map.c
 */
 
 int					fill_map(t_info *info);
+int					read_map(t_info *info, t_fillmap *fill);
 void				fill_map_plus(t_fillmap *fill, t_info *info);
+
+/*
+** srcs:			ft_map.c
+*/
+
 int					create_map(t_info *info);
 int					set_map_size(t_info *info);
+void				count_width(t_setmap *set);
 
 /*
 ** srcs:			ft_ray.c
@@ -281,7 +289,14 @@ void				texture_calc(t_info *info);
 void				choose_texture_1(t_info *info);
 void				choose_texture_2(t_info *info);
 void				skybox(t_info *info);
+
+/*
+** srcs:			ft_gameover.c
+*/
+
 void				game_over(t_info *info);
+void				flash(t_info *info);
+void				create_flash(t_info *info);
 
 /*
 ** srcs:			ft_usage.c
@@ -289,6 +304,6 @@ void				game_over(t_info *info);
 
 int					red_cross(void);
 int					f_exist(t_info *info);
-int					ft_usage(void);
+int					ft_usage(char *error);
 
 #endif

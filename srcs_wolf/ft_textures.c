@@ -6,40 +6,12 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:35:35 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/19 16:33:45 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/25 10:43:28 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes_wolf/wolf.h"
-
-void	game_over(t_info *info)
-{
-	void	*img;
-	int		w;
-	int		h;
-	int		x;
-	int		y;
-
-	y = 0;
-	img = mlx_xpm_file_to_image(info->win.mlx, "img/game_over_p.xpm", &w, &h);
-	while (y < info->win.h)
-	{
-		x = 0;
-		while (x < info->win.w)
-		{
-			info->fps.data[x * 4 + 4 * WIDTH * y] = (char)27;
-			info->fps.data[x * 4 + 4 * WIDTH * y + 1] = (char)27;
-			info->fps.data[x * 4 + 4 * WIDTH * y + 2] = (char)205;
-			info->fps.data[x * 4 + 4 * WIDTH * y + 3] = (char)0;
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(info->win.mlx, info->win.win, info->fps.img, 0, 0);
-	mlx_put_image_to_window(info->win.mlx, info->win.win,
-			img, info->win.w / 2 - w / 2, info->win.h / 2 - h / 2);
-}
 
 void	skybox(t_info *info)
 {

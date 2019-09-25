@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:32:21 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/24 14:01:05 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/25 11:04:48 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,10 +39,10 @@ void	init_player(t_info *info)
 void	init_map(t_info *info)
 {
 	if (set_map_size(info) == -1)
-		ft_usage();
+		ft_usage("Fichier corrompu !");
 	create_map(info);
 	if (fill_map(info) == -1)
-		ft_usage();
+		ft_usage("Fichier corrompu !");
 	get_spawn(info);
 }
 
