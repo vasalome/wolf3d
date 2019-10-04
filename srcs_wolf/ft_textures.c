@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:35:35 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/09/25 11:00:51 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/26 12:00:37 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,26 +20,26 @@ void	skybox(t_info *info)
 	offset = 640;
 	if (info->player.y_dir > 0)
 		offset = -offset;
-	info->tex.img = mlx_xpm_file_to_image(info->win.mlx, "img/square.xpm",\
-		&info->tex.xhud, &info->tex.yhud);
+	info->tex.img = mlx_xpm_file_to_image(info->win.mlx,\
+		"img/fake_sky.xpm", &info->tex.xhud, &info->tex.yhud);
 	mlx_put_image_to_window(info->win.mlx, info->win.win,\
-		info->tex.img, offset * info->player.x_dir, -150);
+		info->tex.img, offset * info->player.x_dir, -125);
 	mlx_put_image_to_window(info->win.mlx, info->win.win,\
-		info->tex.img, offset * info->player.x_dir - info->tex.xhud, -150);
+		info->tex.img, offset * info->player.x_dir - info->tex.xhud, -125);
 	mlx_put_image_to_window(info->win.mlx, info->win.win,\
-		info->tex.img, offset * info->player.x_dir + info->tex.xhud, -150);
-	mlx_put_image_to_window(info->win.mlx, info->win.win,\
-		info->tex.img, offset * info->player.x_dir + \
-		(info->tex.xhud * 2), -150);
-	mlx_put_image_to_window(info->win.mlx, info->win.win,\
-		info->tex.img, offset * info->player.x_dir - \
-		(info->tex.xhud * 2), -150);
+		info->tex.img, offset * info->player.x_dir + info->tex.xhud, -125);
 	mlx_put_image_to_window(info->win.mlx, info->win.win,\
 		info->tex.img, offset * info->player.x_dir + \
-		(info->tex.xhud * 3), -150);
+		(info->tex.xhud * 2), -125);
 	mlx_put_image_to_window(info->win.mlx, info->win.win,\
 		info->tex.img, offset * info->player.x_dir - \
-		(info->tex.xhud * 3), -150);
+		(info->tex.xhud * 2), -125);
+	mlx_put_image_to_window(info->win.mlx, info->win.win,\
+		info->tex.img, offset * info->player.x_dir + \
+		(info->tex.xhud * 3), -125);
+	mlx_put_image_to_window(info->win.mlx, info->win.win,\
+		info->tex.img, offset * info->player.x_dir - \
+		(info->tex.xhud * 3), -125);
 }
 
 void	choose_texture_2(t_info *info)
