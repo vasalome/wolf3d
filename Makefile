@@ -6,7 +6,7 @@
 #    By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/26 17:27:09 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/09/25 11:19:56 by vasalome    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/09/26 12:05:02 by vasalome    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -129,6 +129,11 @@ fclean: clean
 	@$(RM_DIR) $(NAME) a.out wolf3d.dSYM a.out.dSYM
 	@$(MAKE) fclean -C libft/
 	@echo "$(_ORANGE)| ->		FCLEAN: DONE\n$(_STOP)"
+
+fclean_wolf: clean
+	@echo "$(_RED)$(UNDERLINE)WOLF3D:$(R_UNDERLINE)$(_STOP)		$(BOLD)FCLEAN: IN PROGRESS..$(_STOP)\n		DELETING EXEC || ->\n"
+	@$(RM_DIR) $(NAME) a.out wolf3d.dSYM a.out.dSYM
+	@echo "$(_RED)| ->		FCLEAN: DONE\n$(_STOP)"
 
 re:
 	@$(MAKE) fclean --no-print-directory
