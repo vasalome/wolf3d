@@ -1,12 +1,19 @@
-# How to use ?              
---------------------------
-> Exemple : ./wolf3d map
+# PROJET 42: WOLF3D (125/100)
 
 ### Description
+> Inspiré du célèbre jeu éponyme des années 90 qui fut le premier First Person Shooter, ce projet vous permet d'aborder la technique du ray-casting. Votre but sera de représenter une vue dynamique à l'intérieur d'un labyrinthe dans lequel on peut se déplacer.
 
+### Equipe
+> - vasalome
+> - lnieto
+
+## How to use ?              
+--------------------------
+> Exemple: ./wolf3d map
+>
 > You can choose your maps in the "maps" folder :
 
-List :
+List:
 - maps/mindfuck.map
 - maps/big_cube.map
 - maps/lnieto_1.map
@@ -97,3 +104,8 @@ List :
 </tr>
 </tbody>
 </table>
+
+## / VIDEO - DEMO / ->             
+--------------------------
+
+> En tournage
