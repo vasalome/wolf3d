@@ -1,7 +1,7 @@
 # PROJET 42: WOLF3D (125/100)
 
 ### Description
-> Inspiré du célèbre jeu éponyme des années 90 qui fut le premier First Person Shooter, ce projet vous permet d'aborder la technique du ray-casting. Votre but sera de représenter une vue dynamique à l'intérieur d'un labyrinthe dans lequel on peut se déplacer.
+> Inspired by the famous eponymous game of the 90s and the first First Person Shooter, this project will get you acquainted with ray-casting. Your goal is to represent a dynamic view in the labyrinth inside which you can move.
 
 ### Equipe
 > - Valentin Salome - vasalome https://github.com/vasalome
