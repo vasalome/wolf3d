@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/11 15:32:21 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/18 16:42:12 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/25 11:04:48 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,14 +16,6 @@
 /*
 ** Initate default variables when game start
 */
-
-void	init_map(t_info *info)
-{
-	set_map_size(info);
-	create_map(info);
-	fill_map(info);
-	get_spawn(info);
-}
 
 void	init_player(t_info *info)
 {
@@ -40,21 +32,48 @@ void	init_player(t_info *info)
 	info->player.turn_rate = 0.1;
 	info->player.move_speed = 0.05;
 	info->player.tp_index = 0;
+	info->player.life = 11;
+	info->player.can_trap = 1;
+}
+
+void	init_map(t_info *info)
+{
+	if (set_map_size(info) == -1)
+		ft_usage("Fichier corrompu !");
+	create_map(info);
+	if (fill_map(info) == -1)
+		ft_usage("Fichier corrompu !");
+	get_spawn(info);
+}
+
+void	load_textures(t_info *info)
+{
+	info->w_i = 0;
+	info->w_j = 0;
+	weapons(info);
+	hub_life(info);
+	textures_wall_1(info);
+	textures_wall_2(info);
+	textures_door_1(info);
+	textures_door_2(info);
 }
 
 void	init_window(t_info *info)
 {
-	info->window.w = WIDTH;
-	info->window.h = HEIGHT;
-	info->window.mlx = mlx_init();
-	info->window.win = mlx_new_window(info->window.mlx, info->window.w,
-			info->window.h, "LES NAZIS C'EST PAS TRES LE COOL");
+	info->win.w = WIDTH;
+	info->win.h = HEIGHT;
+	info->win.mlx = mlx_init();
+	info->win.win = mlx_new_window(info->win.mlx, info->win.w,\
+		info->win.h, "LES NAZIS C'EST PAS TRES LE COOL");
 }
 
 void	init(t_info *info)
 {
+	info->shot = 1;
 	init_window(info);
+	load_textures(info);
 	init_map(info);
 	init_player(info);
+	icon(info);
 	ray_casting_image(info);
 }

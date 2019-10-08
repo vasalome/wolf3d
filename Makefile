@@ -6,7 +6,7 @@
 #    By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/26 17:27:09 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/24 19:50:15 by vasalome    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/09/26 12:05:02 by vasalome    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -31,12 +31,20 @@ INC_DIR		=	./includes_wolf/
 #	Sources:
 SRCS		=	main_wolf.c
 SRCS		+=	ft_init.c
+SRCS		+=	ft_init_hub.c
+SRCS		+=	ft_init_weapon.c
+SRCS		+=	ft_init_texture.c
+SRCS		+=	ft_fill_map.c
 SRCS		+=	ft_map.c
 SRCS		+=	ft_keys.c
 SRCS		+=	ft_move.c
+SRCS		+=	ft_teleport.c
 SRCS		+=	ft_ray.c
 SRCS		+=	ft_wall.c
+SRCS		+=	ft_draw_wall.c
 SRCS		+=	ft_spawn.c
+SRCS		+=	ft_textures.c
+SRCS		+=	ft_gameover.c
 SRCS		+=	ft_usage.c
 
 #	Objects:
@@ -91,10 +99,10 @@ make_libft:
 
 make_mlx:
 	@echo "$(_ORANGE)$(UNDERLINE)MLX:$(R_UNDERLINE)$(_STOP)		$(BOLD)LIB IN PROGRESS..$(_STOP)\n"
-	@make re -C minilibx_macos/
+	@make -C minilibx_macos/
 	@echo "\n"
 
-$(NAME): $(OBJ) $(INC_DIR) make_libft #make_mlx
+$(NAME): $(OBJ) $(INC_DIR) make_libft make_mlx
 	@echo "$(_ORANGE)$(UNDERLINE)WOLF3D:$(R_UNDERLINE)$(_STOP)		$(BOLD)COMPILATION $(NAME): IN PROGRESS..$(_STOP)\n"
 	@$(CC) $(CFLAGS) $(OBJ) -I ./minilibx_macos/mlx.h ./minilibx_macos/libmlx.a ./libft/libft.a -framework OpenGL -framework AppKit -I ./libft/includes $(INC) -o $(NAME)
 	@echo "$(_ORANGE)| ->		$(NAME):" "$(_STOP)|\033[42m     $(BOLD)L O A D I N G$(R_BOLD)     $(_STOP)|" #| pv -qL 15
@@ -113,6 +121,7 @@ clean:
 	@echo "$(_ORANGE)$(UNDERLINE)WOLF3D:$(R_UNDERLINE)$(_STOP)		$(BOLD)CLEAN: IN PROGRESS..$(_STOP)\n		DELETING OBJECTS || ->\n"
 	@$(RM_DIR) $(OBJ_DIR)
 	@$(MAKE) clean -C libft/
+	@$(MAKE) clean -C minilibx_macos/
 	@echo "$(_ORANGE)| ->		CLEAN: DONE\n$(_STOP)"
 
 fclean: clean
@@ -121,6 +130,11 @@ fclean: clean
 	@$(MAKE) fclean -C libft/
 	@echo "$(_ORANGE)| ->		FCLEAN: DONE\n$(_STOP)"
 
+fclean_wolf: clean
+	@echo "$(_RED)$(UNDERLINE)WOLF3D:$(R_UNDERLINE)$(_STOP)		$(BOLD)FCLEAN: IN PROGRESS..$(_STOP)\n		DELETING EXEC || ->\n"
+	@$(RM_DIR) $(NAME) a.out wolf3d.dSYM a.out.dSYM
+	@echo "$(_RED)| ->		FCLEAN: DONE\n$(_STOP)"
+
 re:
 	@$(MAKE) fclean --no-print-directory
 	@$(MAKE) all --no-print-directory
@@ -128,6 +142,6 @@ re:
 bin: re clean
 
 
-#.SILENT: make_mlx
+.SILENT: make_mlx
 #.PRECIOUS:
 .PHONY: all clean fclean re bin make_libft

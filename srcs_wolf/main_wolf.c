@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/08 17:53:57 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/24 19:24:39 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/09/25 11:05:44 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,18 +16,17 @@
 int		main(int argc, char **argv)
 {
 	t_info	info;
+	void	*mlx;
 
 	if (argc != 2)
-	{
-		ft_usage();
-		exit(0);
-	}
+		ft_usage("Mauvais nombre d'arguments !");
 	info.map.name = argv[1];
 	init(&info);
-	mlx_hook(info.window.win, 17, 0, red_cross, (void *)0);
-	mlx_hook(info.window.win, 2, (1L << 0), key_press, &info);
-	mlx_hook(info.window.win, 3, (1L << 1), key_release, &info);
-	mlx_loop_hook(info.window.mlx, move, &info);
-	mlx_loop(info.window.mlx);
+	mlx_hook(info.win.win, 17, 0, red_cross, (void *)0);
+	mlx_hook(info.win.win, 2, (1L << 0), key_press, &info);
+	mlx_hook(info.win.win, 3, (1L << 1), key_release, &info);
+	mlx_loop_hook(info.win.mlx, move, &info);
+	mlx = info.win.mlx;
+	mlx_loop(mlx);
 	return (0);
 }
